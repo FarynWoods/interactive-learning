@@ -11,4 +11,4 @@ Interactive widget embedded below:
 <input id="p" type="range" min="0" max="100" value="50" />
 <span id="pval"></span>
 
-<script src="/interactive-learning/assets/proof.js"></script>
+<script src="../assets/proof.js"></script>
