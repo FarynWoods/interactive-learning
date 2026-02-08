@@ -1,6 +1,9 @@
-# LLM Climate Impact
+---
+layout: default
+title: LLM Climate Impact
+---
 
-Understanding the environmental cost of large language models.
+# The Environmental Cost of Large Language Models
 
 ## Test React Component
 
