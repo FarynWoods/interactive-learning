@@ -1,4 +1,7 @@
 # Interactive Learning Experiments
 
-This site is a small collection of interactive explanations exploring
-computer science, AI, and learning science concepts.
+A collection of interactive articles exploring computer science, AI, and learning science.
+
+## Articles
+
+- [LLM Climate Impact](articles/llm-climate-impact.html)
