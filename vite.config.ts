@@ -25,12 +25,14 @@ export default defineConfig({
   base: '/interactive-learning/',
   build: {
     outDir: 'assets',
-    emptyOutDir: false, // Don't delete proof.js and other existing assets
+    emptyOutDir: false,
     rollupOptions: {
       input: entries,
       output: {
         entryFileNames: '[name].js',
-        format: 'iife',
+        format: 'es',
+        // Embed React in each bundle
+        manualChunks: undefined,
       },
     },
   },

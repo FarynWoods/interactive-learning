@@ -1,3 +1,7 @@
 node_modules/
 *.log
 .DS_Store
+_site/
+.jekyll-cache/
+WORKFLOW.md
+# Note: assets/ is NOT ignored because it contains built bundles for GitHub Pages
