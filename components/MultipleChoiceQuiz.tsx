@@ -207,9 +207,9 @@ function MultipleChoiceQuiz({
     );
 }
 
-// Auto-mount when script loads
-const mountPoint = document.getElementById('multiple-choice-quiz');
-if (mountPoint) {
+// Auto-mount all quizzes when script loads
+const mountPoints = document.querySelectorAll('[id^="multiple-choice-quiz"]');
+mountPoints.forEach((mountPoint) => {
     const root = createRoot(mountPoint);
 
     // Get quiz data from data attributes
@@ -228,6 +228,6 @@ if (mountPoint) {
             />
         );
     }
-}
+});
 
 export default MultipleChoiceQuiz;
