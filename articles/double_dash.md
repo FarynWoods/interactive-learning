@@ -5,7 +5,7 @@ title: Object Oriented Programming with MarioKart
 
 # Object-Oriented Programming with MarioKart
 
-**Audience**: highschool age or adults newer to programming and code. Suitable for beginners.
+**Audience**: High school students or adults new to programming. No prior experience is required, but some familiarity with code may be helpful.
 
 <small>*Not optimized for mobile devices (yet). Some interactive widgets may not work properly on a phone or tablet.*</small>
 
