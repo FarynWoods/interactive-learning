@@ -5,6 +5,10 @@ title: Object Oriented Programming with MarioKart
 
 # Object-Oriented Programming with MarioKart
 
+**Audience**: highschool age or adults newer to programming and code. Suitable for beginners.
+
+*Not compatible with mobile. Some interactive widgets may not work properly on a phone or tablet.*
+
 In programming, there are many different ways to think about and solve a problem. Some approaches focus on steps and instructions (like a recipe), while others focus on the data being processed.
 
 **Object-oriented programming (OOP)** is a way of organizing your code by thinking in terms of *things* in your program. These things are called **objects**.
@@ -40,9 +44,9 @@ Some items, like Mushrooms, give you a speed boost. A Star gives you invincibili
 Different categories of items behave differently, but they also have some things in common.
 
 <div style="display: flex; justify-content: center; gap: 1rem; margin: 1.5rem 0; flex-wrap: wrap;">
-  <img src="../assets/images/mushroom.webp" alt="Description 1" style="max-width: 200px; border-radius: 8px;">
-  <img src="../assets/images/star.webp" alt="Description 2" style="max-width: 200px; border-radius: 8px;">
-  <img src="../assets/images/banana.webp" alt="Description 3" style="max-width: 200px; border-radius: 8px;">
+  <img src="../assets/images/mushroom.webp" alt="Mushroom item" style="max-width: 150px; border-radius: 8px;">
+  <img src="../assets/images/star.webp" alt="Star item" style="max-width: 150px; border-radius: 8px;">
+  <img src="../assets/images/banana.webp" alt="Banana item" style="max-width: 150px; border-radius: 8px;">
 </div>
 
 Let's sort out things that *all* MarioKart items have in common compared to what might be specific attributes of certain kinds of items.
