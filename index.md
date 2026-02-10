@@ -1,4 +1,7 @@
-## Home
+---
+layout: default
+title: Home
+---
 
 A collection of interactive articles exploring computer science, AI, and learning science.
 
