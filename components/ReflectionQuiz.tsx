@@ -40,8 +40,7 @@ function ReflectionQuiz({
                 marginBottom: '24px',
                 fontSize: '16px',
                 lineHeight: '1.6'
-            }}>
-                {question}
+            }} dangerouslySetInnerHTML={{ __html: question }}>
             </p>
 
             <div style={{ marginBottom: '24px' }}>
@@ -94,7 +93,7 @@ function ReflectionQuiz({
                                 }
                             }}
                         >
-                            <span style={{ color: '#1e293b' }}>{option}</span>
+                            <span style={{ color: '#1e293b' }} dangerouslySetInnerHTML={{ __html: option }}></span>
                             {isCompleted && isCurrentlySelected && (
                                 <svg
                                     width="20"
@@ -140,7 +139,7 @@ function ReflectionQuiz({
                         <path d="M10 22h4" />
                     </svg>
                     <div style={{ color: '#164e63' }}>
-                        <p style={{ fontSize: '14px', lineHeight: '1.5' }}>{explanations[selectedAnswer]}</p>
+                        <p style={{ fontSize: '14px', lineHeight: '1.5' }} dangerouslySetInnerHTML={{ __html: explanations[selectedAnswer] }}></p>
                     </div>
                 </div>
             )}

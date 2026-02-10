@@ -4,9 +4,10 @@ import { createRoot } from 'react-dom/client';
 interface CodeComparisonProps {
     pseudocode: string;
     python: string;
+    showBothOption?: boolean;
 }
 
-function CodeComparison({ pseudocode, python }: CodeComparisonProps) {
+function CodeComparison({ pseudocode, python, showBothOption = true }: CodeComparisonProps) {
     const [view, setView] = useState<'pseudocode' | 'python' | 'both'>('pseudocode');
 
     return (
@@ -76,33 +77,35 @@ function CodeComparison({ pseudocode, python }: CodeComparisonProps) {
                 >
                     Python
                 </button>
-                <button
-                    onClick={() => setView('both')}
-                    style={{
-                        padding: '8px 16px',
-                        borderRadius: '6px',
-                        border: '2px solid',
-                        borderColor: view === 'both' ? '#3b82f6' : '#e2e8f0',
-                        backgroundColor: view === 'both' ? '#dbeafe' : 'white',
-                        color: view === 'both' ? '#1e40af' : '#64748b',
-                        fontSize: '14px',
-                        fontWeight: 500,
-                        cursor: 'pointer',
-                        transition: 'all 0.2s'
-                    }}
-                    onMouseEnter={(e) => {
-                        if (view !== 'both') {
-                            e.currentTarget.style.borderColor = '#cbd5e1';
-                        }
-                    }}
-                    onMouseLeave={(e) => {
-                        if (view !== 'both') {
-                            e.currentTarget.style.borderColor = '#e2e8f0';
-                        }
-                    }}
-                >
-                    Both
-                </button>
+                {showBothOption && (
+                    <button
+                        onClick={() => setView('both')}
+                        style={{
+                            padding: '8px 16px',
+                            borderRadius: '6px',
+                            border: '2px solid',
+                            borderColor: view === 'both' ? '#3b82f6' : '#e2e8f0',
+                            backgroundColor: view === 'both' ? '#dbeafe' : 'white',
+                            color: view === 'both' ? '#1e40af' : '#64748b',
+                            fontSize: '14px',
+                            fontWeight: 500,
+                            cursor: 'pointer',
+                            transition: 'all 0.2s'
+                        }}
+                        onMouseEnter={(e) => {
+                            if (view !== 'both') {
+                                e.currentTarget.style.borderColor = '#cbd5e1';
+                            }
+                        }}
+                        onMouseLeave={(e) => {
+                            if (view !== 'both') {
+                                e.currentTarget.style.borderColor = '#e2e8f0';
+                            }
+                        }}
+                    >
+                        Both
+                    </button>
+                )}
             </div>
 
             {/* Code display */}
@@ -176,12 +179,14 @@ mountPoints.forEach((mountPoint) => {
     // Get code data from data attributes
     const pseudocodeData = mountPoint.getAttribute('data-pseudocode');
     const pythonData = mountPoint.getAttribute('data-python');
+    const showBothOption = mountPoint.getAttribute('data-show-both-option') !== 'false';
 
     if (pseudocodeData && pythonData) {
         root.render(
             <CodeComparison
                 pseudocode={pseudocodeData}
                 python={pythonData}
+                showBothOption={showBothOption}
             />
         );
     }

@@ -48,8 +48,7 @@ function MultipleChoiceQuiz({
                 marginBottom: '24px',
                 fontSize: '16px',
                 lineHeight: '1.6'
-            }}>
-                {question}
+            }} dangerouslySetInnerHTML={{ __html: question }}>
             </p>
 
             <div style={{ marginBottom: '24px' }}>
@@ -105,7 +104,7 @@ function MultipleChoiceQuiz({
                                 }
                             }}
                         >
-                            <span style={{ color: '#1e293b' }}>{option}</span>
+                            <span style={{ color: '#1e293b' }} dangerouslySetInnerHTML={{ __html: option }}></span>
                             {isCompleted && isCorrectOption && (
                                 <svg
                                     width="20"
@@ -169,7 +168,7 @@ function MultipleChoiceQuiz({
                     </svg>
                     <div style={{ color: '#78350f' }}>
                         <p style={{ marginBottom: '4px', fontWeight: '500' }}>Not quite right. Try again!</p>
-                        <p style={{ fontSize: '14px', opacity: 0.9 }}>{explanations[selectedAnswer]}</p>
+                        <p style={{ fontSize: '14px', opacity: 0.9 }} dangerouslySetInnerHTML={{ __html: explanations[selectedAnswer] }}></p>
                     </div>
                 </div>
             )}
@@ -199,7 +198,7 @@ function MultipleChoiceQuiz({
                     </svg>
                     <div style={{ color: '#14532d' }}>
                         <p style={{ marginBottom: '4px', fontWeight: '500' }}>Correct! Well done!</p>
-                        <p style={{ fontSize: '14px', opacity: 0.9 }}>{explanations[selectedAnswer]}</p>
+                        <p style={{ fontSize: '14px', opacity: 0.9 }} dangerouslySetInnerHTML={{ __html: explanations[selectedAnswer] }}></p>
                     </div>
                 </div>
             )}

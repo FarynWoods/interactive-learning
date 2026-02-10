@@ -127,9 +127,9 @@ CLASS ProjectileItem EXTENDS Item
 
     METHOD use(direction)
         IF direction is "forward"
-            PRINT "self.name is shot in front of the kart."
+            PRINT "self.name is thrown in front of the kart."
         IF direction is "backward"
-            PRINT "self.name is shot behind the kart."
+            PRINT "self.name is thrown behind the kart."
         ELSE
             ERROR'
     data-python='
@@ -138,9 +138,9 @@ class ProjectileItem(Item):
 
     def use(self, direction):
         if direction == "forward":
-            print(f"{self.name} is shot in front of the kart.")
+            print(f"{self.name} is thrown in front of the kart.")
         elif direction == "backward":
-            print(f"{self.name} is shot behind the kart.")
+            print(f"{self.name} is thrown behind the kart.")
         else:
             raise ValueError("direction must be &apos;forward&apos; or &apos;backward&apos;")'>
 </div>
@@ -157,36 +157,53 @@ class ProjectileItem(Item):
 <script type="module" src="../assets/MultipleChoiceQuiz.js"></script>
 <br>
 
-Now, what might happen if `direction` is set to "left"? Take a guess, then run the code to see what happens.
+Now, choose a `direction` and test it out for yourself.
 
 <br>
-<div id="reflection-quiz-wrong-direction"
-    data-question='What will happen if &lt;code&gt;direction = "left"&lt;/code&gt;?'
-    data-options='["It will print \"Item is shot to the left of the kart.\"", "The code will error"]'
-    data-explanations='["Look at where we check the values of &lt;code&gt;direction&lt;/code&gt;. We have two &lt;code&gt;IF&lt;/code&gt;s. What happens if neither of those &lt;code&gt;IF&lt;/code&gt;s are true? Think about it, then try running the code next and see what happens!", "Now try running the code to see if you were right!"]'>
+<div id="interactive-code-runner-direction"
+    data-code-template='banana_1 = ProjectileItem("banana")
+banana_1.use(<direction>)'
+    data-output-template='banana is thrown <in front of/behind> the kart.'
+    data-choices='["forward", "backward"]'
+    data-choice-label='Choose a direction:'>
 </div>
-<script type="module" src="../assets/MultipleChoiceQuiz.js"></script>
+<script type="module" src="../assets/InteractiveCodeRunner.js"></script>
 <br>
 
-<br>
-<div id="code-runner-wrong-direction"
-    data-code='banana_1 = ProjectileItem("banana")
-banana_1.use("left")'
-    data-output='Traceback (most recent call last):
-  File "main.py", line 2, in &lt;module&gt;
-    banana_1.use("left")
-  File "main.py", line 8, in use
-    raise ValueError(f"Invalid direction: {direction}. Must be &quot;forward&quot; or &quot;backward&quot;.")
-ValueError: direction must be &apos;forward&apos; or &apos;backward&apos;.'>
-</div>
-<script type="module" src="../assets/CodeRunner.js"></script>
-<br>
+It's working!
 
-Check out that last line - `ValueError: direction must be 'forward' or 'backward'.` That's an error! We're only handling the **conditions** where `direction` is "forward" or "backward". If we 
+Now, going back to the code, note that `ProjectileItem` uses `self.name`, even though we never define `name` inside `ProjectileItem`. 
 
-Note that `ProjectileItem` uses `self.name`, even though we never define `name` inside `ProjectileItem`. This works because `ProjectileItem` inherits from the base class `Item`, where we *did* define `name` as an attribute. Since every `Item` has a `name`, every `ProjectileItem` automatically has one too.
+```
+IF direction is "forward"
+    PRINT "self.name is thrown in front of the kart."
+IF direction is "backward"
+    PRINT "self.name is thrown behind the kart."
+```
+
+This works because `ProjectileItem` inherits from the base class `Item`, where we *did* define `name` as an attribute. Since every `Item` has a `name`, every `ProjectileItem` automatically has one too.
 
 In other words, when a class extends another class, it automatically gets all of the *parent* class's attributes and methods. This is called **inheritance** and is how we can define sub-categories of objects. A banana belongs to the broad category or class called `Item`, and its specific sub-category or sub-class is a `ProjectileItem`.
+
+You can see how we gave our `ProjectileItem` the name "banana" like so:
+
+```
+banana_1 = ProjectileItem("banana")
+```
+
+<br>
+
+Try giving using different items by setting the name!
+
+<div id="interactive-code-runner-name"
+    data-code-template='my_item = ProjectileItem("<name>")
+my_item.use("forward")'
+    data-output-template='<name> is thrown in front of the kart.'
+    data-choices='["banana", "red_shell", "bob_omb"]'
+    data-choice-label='Choose an item:'>
+</div>
+<script type="module" src="../assets/InteractiveCodeRunner.js"></script>
+<br>
 
 <br>
 
@@ -194,7 +211,9 @@ In other words, when a class extends another class, it automatically gets all of
 
 <br>
 
-We've modeled the basics of what an item is and can do and how projectile items specifically work. Next, let's look at how items interact with another object in the game - karts.
+## Modeling Karts
+
+We've modeled the basics of what an item is and can do and how projectile items, specifically, work. Next, let's look at how items interact with another object in the game - karts.
 
 We already know how to model a simple object. Now we'll challenge ourselves by modeling a `Kart`, which is a bit more complicated. In the full game, karts can accelerate, brake, and steer - but for now, we'll focus only on how a kart is affected by items.
 
@@ -208,16 +227,16 @@ We already know how to model a simple object. Now we'll challenge ourselves by m
 <script type="module" src="../assets/MultipleChoiceQuiz.js"></script>
 <br>
 
-Hitting a banana doesn't give you an item - it changes the state of your kart. The kart is now spun out, and that information needs to be remembered somewhere. We've seen this before, with our `Candle` object. The candle can be lit or unlit, and we can change its state by lighting it or blowing it out.
+Hitting a banana doesn't give you an item - it changes the **state** of your kart. The kart is now spun out, and that information needs to be remembered somewhere. We've seen this before, with our candle. The candle can be lit or unlit, and we can change its state by lighting it or blowing it out.
 
 Keeping that in mind, let's figure out how we want to include spinning out in our `Kart` model.
 
 <br>
 <div id="multiple-choice-quiz-spinout-behavior"
-    data-question='How might we think about spinning out as a behavior?'
+    data-question='How might we think about spinning out as an action?'
     data-options='["As a method like spin_out()", "As an attribute like is_spun_out"]'
     data-correct-answer="0"
-    data-explanations='["Exactly! A kart can spin out, so we might represent that action with a method like spin_out().", "Not quite. An attribute represents state, not behavior."]'>
+    data-explanations='["A kart can spin out, which is an action. Actions are naturally represented by methods like spin_out().", "An attribute allows us to remember what state we&apos;re in, but how do we change that state?"]'>
 </div>
 <script type="module" src="../assets/MultipleChoiceQuiz.js"></script>
 <br>
@@ -226,7 +245,7 @@ Keeping that in mind, let's figure out how we want to include spinning out in ou
     data-question='How might we think about spinning out as a state?'
     data-options='["As a method like spin_out()", "As an attribute like is_spun_out"]'
     data-correct-answer="1"
-    data-explanations='["Not quite. A method represents behavior, not state.", "Exactly! A kart can be spun out or not, so we might represent that state with an attribute like is_spun_out."]'>
+    data-explanations='["A method allows us to change state, but how do we remember what state we&apos;re in?", "A kart can be spun out or not. That&apos;s information we want to remember, so it makes sense to store it in an attribute like is_spun_out."]'>
 </div>
 <script type="module" src="../assets/MultipleChoiceQuiz.js"></script>
 <br>
@@ -235,7 +254,7 @@ Keeping that in mind, let's figure out how we want to include spinning out in ou
     data-question='So which do we need to model spinning out?'
     data-options='["Only a method", "Only an attribute", "Both a method and an attribute"]'
     data-correct-answer="2"
-    data-explanations='["A method captures the action of spinning out, but without an attribute we can&apos;t keep track of whether the car is still spinning out or not.", "An attribute keeps track of whether the car is still spinning out or not, but it doesn&apos;t capture how the kart enters or leaves that state.", "An attribute keeps track of whether the car is still spinning out or not, and a method captures how the kart enters or leaves that state."]'>
+    data-explanations='["A method captures the action of spinning out, but without an attribute we can&apos;t keep track of whether the car is still spinning out or not.", "An attribute keeps track of whether the car is spun out, but it doesn&apos;t capture how the kart enters or leaves that state.", "Using both works best. The method describes what happens, and the attribute remembers what state the kart is in."]'>
 </div>
 <script type="module" src="../assets/MultipleChoiceQuiz.js"></script>
 <br>
@@ -278,9 +297,11 @@ We now have a basic model for a kart! But a car that can only spin out isn't ver
   <img src="../assets/images/princess-peach-mario-kart.gif" alt="Princess Peach uses a star to turn invincible!" style="max-width: 500px; border-radius: 8px;">
 </div>
 
-[Image Credit - Tenor](https://tenor.com/view/princes-speach-mario-kart-superstar-gif-10116704)
+<div style="text-align: center;"><small><a href="https://tenor.com/view/princes-speach-mario-kart-superstar-gif-10116704">GIF Credit - Tenor</a></small></div>
 
-In MarioKart, the Star item makes you invincible to all attacks. (It also triggers some triumphant music - another thing we could model but we'll leave that for another time!) Using a star affects your kart, so how will we reflect that?
+## Modeling InvincibilityItem
+
+In MarioKart, the Star item makes you invincible to all attacks. (It also triggers some triumphant music!) Using a star affects your kart, so how will we reflect that?
 
 Let's start by updating `Kart` - it now needs to be able to become invincible and keep track of whether it is currently invincible or not. Let's model it the same way we did spinning out - we have methods for becoming invincible and losing invincibility, and the state of being invincible or not is captured in an attribute.
 
@@ -324,14 +345,14 @@ class Kart:
 <script type="module" src="../assets/CodeComparison.js"></script>
 <br>
 
-Looks good! Now how do we model a Star?
+Looks good! Now how do we model a Star? The Star interacts with our Kart, but think about what object should "own" methods and attributes about the Star.
 
 <br>
 <div id="multiple-choice-quiz-star-class"
-    data-question='What do we need to represent the Star object?'
-    data-options='["A new method in the Kart class", "A new class that inherits from Item", "Just a variable to store the star"]'
+    data-question='How should we represent a Star using object-oriented programming?'
+    data-options='["A new method in the Kart class", "A new class that inherits from Item", "A variable to store whether we have a star"]'
     data-correct-answer="1"
-    data-explanations='["The Star is an item in the game, not a behavior of the kart.", "The Star is a type of Item, so we create a new class that inherits from Item.", "We need to define what a Star can do (its methods and attributes), not just store it."]'>
+    data-explanations='["The Star is an item in the game. While it affects the kart, it isn&apos;t a behavior of the kart itself.", "The Star is a specific type of Item, so we model it as a new class that inherits from <code>Item</code> and defines how it is used.", "A variable can store information, but it can&apos;t describe behavior. We need to define what the Star does when it&apos;s used."]'>
 </div>
 <script type="module" src="../assets/MultipleChoiceQuiz.js"></script>
 <br>
@@ -339,7 +360,7 @@ Looks good! Now how do we model a Star?
 <div id="reflection-quiz-star-name"
     data-question='What should we name this new class?'
     data-options='["Star", "InvincibilityItem", "Either could work"]'
-    data-explanations='["This is a good specific name, but let&apos;s think through the naming a bit more.", "This is a good generic name, let&apos;s think through why this might be a good option.", "Both names work, but let&apos;s think through why one might be better than the other."]'>
+    data-explanations='["This is a good specific name, but let&apos;s think through the naming a bit more.", "This is a good generic name. Let&apos;s think through why this might be a good option.", "Both names work, but let&apos;s think through why one might be better than the other."]'>
 </div>
 <script type="module" src="../assets/ReflectionQuiz.js"></script>
 <br>
@@ -350,9 +371,9 @@ One of the nice things about object-oriented programming is that we can define g
   <img src="../assets/images/bullet_bill.gif" alt="A bullet bill steers you through the course without you having to lift a finger, all while invincible!" style="max-width: 500px; border-radius: 8px;">
 </div>
 
-[Image Credit - Tenor](https://tenor.com/view/mario-kart-wii-mario-kart-mario-kart-wii-gif-23390794)
+<div style="text-align: center;"><small><a href="https://tenor.com/view/mario-kart-wii-mario-kart-mario-kart-wii-gif-23390794">Gif Credit - Tenor</a></small></div>
 
-> A bullet bill steers you through the course without you having to lift a finger, all while invincible!
+<small><i>A bullet bill steers you through the course without you having to lift a finger, all while invincible!</i></small>
 
 <br>
 
@@ -360,10 +381,10 @@ Following our `Item` blueprint, we need to define `InvincibilityItem`'s specific
 
 <br>
 <div id="code-option-quiz-invincibility-use"
-    data-question='Which of these is the use() function we want?'
-    data-options='["CLASS InvincibilityItem EXTENDS Item\n\n    METHOD use(kart)\n        kart.become_invincible()", "CLASS InvincibilityItem EXTENDS Item\n\n    METHOD use()\n        kart.become_invincible()", "CLASS InvincibilityItem EXTENDS Item\n\n    METHOD use()\n        become_invincible()"]'
-    data-correct-answer="0"
-    data-explanations='["Exactly! use() takes a kart as a parameter and affects the given kart by triggering it to become_invincible().", "Not quite. Where does kart come from? We need to pass it as a parameter to use().", "Not quite. We need to specify which kart to affect, and become_invincible() is a method on Kart, not InvincibilityItem."]'>
+    data-question='Which version of use() correctly applies invincibility to a kart?'
+    data-options='["CLASS InvincibilityItem EXTENDS Item\n\n    METHOD use()\n        kart.become_invincible()", "CLASS InvincibilityItem EXTENDS Item\n\n    METHOD use(kart)\n        kart.become_invincible()", "CLASS InvincibilityItem EXTENDS Item\n\n    METHOD use()\n        become_invincible()"]'
+    data-correct-answer="1"
+    data-explanations='["Where does kart come from? We need to pass the kart into use() so the item knows which kart to affect.", "use() takes a kart as a parameter and affects that kart by calling its become_invincible() method.", "We need to specify which kart to affect, and become_invincible() is a method on Kart, not on InvincibilityItem."]'>
 </div>
 <script type="module" src="../assets/CodeOptionQuiz.js"></script>
 <br>
@@ -391,15 +412,28 @@ class InvincibilityItem(Item):
 <script type="module" src="../assets/CodeComparison.js"></script>
 <br>
 
-<details>
-<summary><strong>For advanced students</strong></summary>
+Let's build some more intuition for why we should change a <code>Kart</code>'s state using a method, as opposed to letting another item change its state directly. We <i>could</i> have the Star item set <code>kart.is_invincible = True</code> directly, and with our current model that would work. But in the actual game, if you drive off the track, you <em>can't</em> activate a star while you're falling. The <code>InvincibilityItem</code> shouldn't need to know whether your kart is falling - that's something your kart should check.
+
+This is the same idea we saw earlier with spinning out. We didn’t let other objects flip <code>is_spun_out</code> directly; instead, we gave the kart a <code>spin_out()</code> method and let the kart decide how its state changes.
+
+By having the Star call <code>kart.become_invincible()</code>, we keep all the rules about invincibility inside the `Kart` class. Items <i>ask</i> the kart to change, and the kart decides whether that change is allowed based on its current state. This keeps responsibilities clear and makes the code easier to extend as the game gets more complex.
+
+With that, we've finished adding `InvincibilityItem` to our game, which lets us use items like the Star ⭐ 
+
+Before we try it out though, let's review what we've built!
 
 <br>
 
-Alternatively, we could have the Star item set <code>kart.is_invincible = True</code>. That works with what we have so far. But in the game, if you go off the track, you <em>can't</em> activate a star while you're falling. The InvincibilityItem shouldn't need to know whether you're actively falling or not - that's something your kart knows. So, it's preferable here to have Items ask the Kart to change (by calling its <code>become_invincible</code> method), and the kart updates itself, depending on what states it's in.
+<details>
+<summary><strong>For an extra challenge ...</strong></summary>
 
-Here's how we can model Kart to take into account <code>is_falling</code> when an Item triggers the Kart the <code>become_invincible</code>.
+<br>
 
+<h2>Modeling falling off the track with recursion</h2>
+
+Here's one way that we can model Kart to take into account <code>is_falling</code> when an Item triggers the Kart to <code>become_invincible</code>.
+
+<br>
 <br>
 <div id="code-comparison-kart-falling"
     data-pseudocode='
@@ -420,21 +454,12 @@ class Kart:
         self.is_spun_out = False
         self.is_invincible = False
 
-    def spin_out(self):
-        self.is_spun_out = True
-
-    def recover(self):
-        self.is_spun_out = False
-
     def become_invincible(self):
         if not is_falling:
             self.is_invincible = True
         else:
             time.sleep(1)
-            self.become_invincible()
-
-    def lose_invincibility(self):
-        self.is_invincible = False'>
+            self.become_invincible()'>
 </div>
 <script type="module" src="../assets/CodeComparison.js"></script>
 <br>
@@ -442,19 +467,32 @@ class Kart:
 Notice how in the ELSE block, we wait a second and then call <code>become_invincible()</code> again.
 
 <br>
+
+<br>
 <div id="reflection-quiz-recursion"
     data-question="We've waited a second and then we call become_invincible again. What might be different now?"
     data-options='["is_falling might be False now, so we can set is_invincible to True and move on.", "is_falling might still be True, so we wait another second and check again", "Either!"]'
-    data-explanations='["Good call - After waiting, is_falling might have changed to False, allowing us to finally set is_invincible to True.", "Good thinking! It&apos;s possible is_falling is still True, so we&apos;d wait another second and recursively check again.", "You got it! Both scenarios are possible and we keep checking until the condition changes."]'>
+    data-explanations='["Good call - After waiting, is_falling might have changed to False, allowing us to set is_invincible to True.", "Good thinking! It&apos;s possible is_falling is still True, so we&apos;d wait another second and recursively check again.", "You got it! Both scenarios are possible and we keep checking until the condition changes."]'>
 </div>
 <script type="module" src="../assets/ReflectionQuiz.js"></script>
 <br>
 
-This is called <strong>recursion</strong>! Recursion is a general computer science concept and not specific to Object-Oriented Programming - so we'll dive into it in more detail in a later lesson.
+We could see either case! And eventually, we'll check is_falling, it will be False, and we're able to become_invincible. This method is called <strong>recursion</strong>! Recursion is a general computer science concept and not specific to Object-Oriented Programming - so we'll dive into it in more detail in a later lesson.
+
+<br>
+<br>
 
 For now, just take an extra second to trace through what's happening and try to wrap your head around it. As long as is_falling is set to True, we keep waiting a second and calling the function again to check the status of is_falling. is_falling eventually gets set to False, so we change is_invincible to True and exit the function.
 
+<br>
+<br>
+
 Cue star music!
+
+<br>
+<br>
+
+<i>Note: Recursion is only one way to implement this, there are other ways!</i>
 
 </details>
 
@@ -464,38 +502,21 @@ Cue star music!
 
 <br>
 
-With that, we've finished adding `InvincibilityItem` to our game, which lets us use items like the Star ⭐ 
+## What we've built!
 
-Let's review what we've built. We have two broad categories of objects implemented - `Item` and `Kart`:
-
-### Item
+We have two broad categories of objects: `Item` and `Kart`, plus two specific types of `Item`: `ProjectileItem` and `InvincibilityItem`.
 
 <br>
-<div id="code-comparison-item-review"
-    data-pseudocode='
+<div id="code-comparison-full-review"
+    data-pseudocode='# Item base class
 CLASS Item
     ATTRIBUTE name
 
     METHOD use()
         # Apply the item&apos;s effect
-        # We&apos;ll let specific items implement their own method use()'
-    data-python='
-class Item:
-    def __init__(self, name):
-        self.name = name
+        # We&apos;ll let specific items implement their own method use()
 
-    def use(self):
-        """Apply the item&apos;s effect"""
-        raise NotImplementedError'>
-</div>
-<script type="module" src="../assets/CodeComparison.js"></script>
-<br>
-
-### Kart
-
-<br>
-<div id="code-comparison-kart-review"
-    data-pseudocode='
+# Kart class
 CLASS Kart
     ATTRIBUTE is_spun_out
     ATTRIBUTE is_invincible
@@ -510,8 +531,34 @@ CLASS Kart
         is_invincible = True
 
     METHOD lose_invincibility
-        is_invincible = False'
-    data-python='
+        is_invincible = False
+
+# ProjectileItem subclass
+CLASS ProjectileItem EXTENDS Item
+
+    METHOD use(direction)
+        IF direction is "forward"
+            PRINT "self.name is thrown in front of the kart."
+        IF direction is "backward"
+            PRINT "self.name is thrown behind the kart."
+        ELSE
+            ERROR
+
+# InvincibilityItem subclass
+CLASS InvincibilityItem EXTENDS Item
+
+    METHOD use(kart)
+        kart.become_invincible()'
+    data-python='# Item base class
+class Item:
+    def __init__(self, name):
+        self.name = name
+
+    def use(self):
+        """Apply the item&apos;s effect"""
+        raise NotImplementedError
+
+# Kart class
 class Kart:
 
     def __init__(self):
@@ -528,75 +575,45 @@ class Kart:
         self.is_invincible = True
 
     def lose_invincibility(self):
-        self.is_invincible = False'>
-</div>
-<script type="module" src="../assets/CodeComparison.js"></script>
-<br>
+        self.is_invincible = False
 
-And we have two more specific types of `Item`: `ProjectileItem` and `InvincibilityItem`.
-
-### ProjectileItem
-
-<br>
-<div id="code-comparison-projectile-review"
-    data-pseudocode='
-CLASS ProjectileItem EXTENDS Item
-
-    METHOD use(direction)
-        IF direction is "forward"
-            PRINT "self.name is shot in front of the kart."
-        IF direction is "backward"
-            PRINT "self.name is shot behind the kart."
-        ELSE
-            ERROR'
-    data-python='
+# ProjectileItem subclass
 class ProjectileItem(Item):
     """Items you throw forward or backward."""
 
     def use(self, direction):
         if direction == "forward":
-            print(f"{self.name} is shot in front of the kart.")
+            print(f"{self.name} is thrown in front of the kart.")
         elif direction == "backward":
-            print(f"{self.name} is shot behind the kart.")
+            print(f"{self.name} is thrown behind the kart.")
         else:
-            raise ValueError("direction must be &apos;forward&apos; or &apos;backward&apos;")'>
-</div>
-<script type="module" src="../assets/CodeComparison.js"></script>
-<br>
+            raise ValueError("direction must be &apos;forward&apos; or &apos;backward&apos;")
 
-### InvincibilityItem
-
-<br>
-<div id="code-comparison-invincibility-review"
-    data-pseudocode='
-CLASS InvincibilityItem EXTENDS Item
-
-    METHOD use(kart)
-        kart.become_invincible()'
-    data-python='
+# InvincibilityItem subclass
 class InvincibilityItem(Item):
     """Items you use on your kart to grant invincibility."""
 
     def use(self, kart):
-        kart.become_invincible()'>
+        kart.become_invincible()'
+    data-show-both-option='false'>
 </div>
 <script type="module" src="../assets/CodeComparison.js"></script>
 <br>
 
 ## Putting it together
-Finally, let's actually test out some of the things we've built! First, we'll need to create a `Kart`. Let's go ahead and do this in Python - can you guess how we set it up?
+Finally, let's test out everything we've built! First, we'll need to create a `Kart`. Let's go ahead and do this in Python - can you guess how we set it up?
 
 <br>
 <div id="multiple-choice-quiz-create-kart"
     data-question='How do we create a Kart object?'
     data-options='["my_kart = Kart()", "Kart()", "my_kart = kart()"]'
     data-correct-answer="0"
-    data-explanations='["", "", "Pay attention to the capitalization - we&apos;ve created a Kart() object with a capital K. Python objects are case-sensitive!"]'>
+    data-explanations='["", "We created an object, but we need to save it to a variable so we can use it. We do that by choosing a name for our variable and setting it equal to our Kart class, like <code>my_variable = Kart()</code>", "Pay attention to the capitalization - we&apos;ve created a Kart() object with a capital K. Python objects are case-sensitive!"]'>
 </div>
 <script type="module" src="../assets/MultipleChoiceQuiz.js"></script>
 <br>
 
-That's it! We don't have anything customizable about the Kart, but that's something you could add.
+That's it! Unlike `Item`s, `Kart`s don't have a name of any other customization, so we just create a generic `Kart`.
 
 Let's see what current state `my_kart` is in. Press Play to run the code:
 
@@ -638,7 +655,7 @@ else:
 <br>
 
 ### Wrapping up
-In this lesson, we learned the basics of object-oriented programming. We:
+In this lesson, we learned some basics of object-oriented programming. We:
 - created objects with attributes (state) and methods (behavior)
 - created base classes that define shared structure and behavior for related objects
 - showed how objects can interact by calling each other's methods
@@ -661,4 +678,8 @@ Thanks for building this with me and I'll see you out on the track!
 <br>
 
 ### AI Use
-The narrative content and idea for this article are entirely my own. AI was used to generate code for the widgets, per my designs. My final outline, before AI was used, is available [here](https://github.com/FarynWoods/interactive-learning/blob/15964444fdabf5448be39e2f8414b1449d5253c4/articles/double_dash.md). Further editing was done by me after this version, but it captures my original outline before using code assistance to add in the interactive widgets.
+Here was my process for developing this article:
+- Came up with the idea (using MarioKart to teach OOP) on my own
+- Developed the narrative and ideas for interactive widgets on my own. That draft is viewable [here](https://github.com/FarynWoods/interactive-learning/blob/15964444fdabf5448be39e2f8414b1449d5253c4/articles/double_dash.md).
+- Used AI to generate the code for the interactive widgets.
+- While editing the final draft, most of the edits are my own but I used AI to offer suggestions when I was stuck.
