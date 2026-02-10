@@ -7,19 +7,27 @@ title: Object Oriented Programming with MarioKart
 
 **Audience**: highschool age or adults newer to programming and code. Suitable for beginners.
 
-*Not compatible with mobile. Some interactive widgets may not work properly on a phone or tablet.*
+<small>*Not optimized for mobile devices (yet). Some interactive widgets may not work properly on a phone or tablet.*</small>
+
+<br>
+
+---
+
+<br>
+
+## Intro to Object-Oriented Programming
 
 In programming, there are many different ways to think about and solve a problem. Some approaches focus on steps and instructions (like a recipe), while others focus on the data being processed.
 
-**Object-oriented programming (OOP)** is a way of organizing your code by thinking in terms of *things* in your program. These things are called **objects**.
+**Object-oriented programming (OOP)** is a way of writing programs by modeling parts of a problem as individual **objects.**
 
-An object represents something meaningful in the problem you’re solving. Objects have **attributes**, which describe what they are, and **behaviors**, which describe what they can do.
+An object represents something meaningful in the problem you're solving. Objects have **attributes**, which describe what they are, and **behaviors**, which describe what they can do.
 
-For example, we could model a candle as an object. A candle can be lit or unlit, and there are specific actions that change that state: you can light an unlit candle, or blow out a lit one.
+For example, we could model a candle as an object. A candle can be lit or unlit, and there are specific actions we can take that change that **state**: you can light an unlit candle, or blow out a lit one.
 
 A candle also has characteristics we might want to store, like its color and its height. The height changes over time, but only while the candle is lit - so knowing whether the candle is lit or unlit matters to how the candle behaves.
 
-In object-oriented programming, we can represent all of this by grouping the candle’s data (its color, height, and whether it’s lit) together with the actions that affect it (lighting and blowing it out) into a single object.
+In object-oriented programming, we can represent all of this by grouping the candle's data (its color, height, and whether it's lit) together with the actions that affect it (lighting and blowing it out) into a single object.
 
 Below, you can choose the color of the candle and press buttons to light it or blow it out. The height decreases while the candle is lit, but you can make it taller again by dragging the slider up when the candle is unlit.
 
@@ -31,17 +39,19 @@ Below, you can choose the color of the candle and press buttons to light it or b
 
 <br>
 
-Now let's look at a more exciting example - MarioKart! MarioKart has a lot of different objects we could model, for example, the items. Some items you can throw at other cars so that, if you hit them, you can pass them while they spin out.
-
 ## Modeling Items in MarioKart
+
+Now let's look at a more exciting example - MarioKart! MarioKart has a lot of different objects we could model, for example, the **items**. Some items you aim at other cars hoping you land a hit and can pass them while they spin out.
 
 <div style="text-align: center; margin: 1.5rem 0;">
   <img src="../assets/images/luigi.webp" alt="Luigi hits Rosalina with a red shell and passes her with a sneer." style="max-width: 500px; border-radius: 8px;">
 </div>
 
-Some items, like Mushrooms, give you a speed boost. A Star gives you invincibility.
+<div style="text-align: center;"><small><a href="https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExMjlnMmxkamhmZ3Y4cDh2OW9xOTNtNG9uYjZpZGZ2cG9xdjliZ201ZiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/NXDoaAmF7dkyc/giphy.gif">GIF Credit - Giphy</a></small></div>
 
-Different categories of items behave differently, but they also have some things in common.
+<br>
+
+Some items, like Mushrooms, give you a speed boost. A Star gives you invincibility.
 
 <div style="display: flex; justify-content: center; gap: 1rem; margin: 1.5rem 0; flex-wrap: wrap;">
   <img src="../assets/images/mushroom.webp" alt="Mushroom item" style="max-width: 150px; border-radius: 8px;">
@@ -49,17 +59,25 @@ Different categories of items behave differently, but they also have some things
   <img src="../assets/images/banana.webp" alt="Banana item" style="max-width: 150px; border-radius: 8px;">
 </div>
 
+<div style="text-align: center;"><small><a href="https://mariokart.fandom.com/wiki/Item">Images from MarioKart.Fandom.com</a></small></div>
+
+<br>
+
+Different categories of items behave differently, but they also have some things in common.
+
 Let's sort out things that *all* MarioKart items have in common compared to what might be specific attributes of certain kinds of items.
 
 <div id="attribute-sorting"></div>
 <script type="module" src="../assets/AttributeSorting.js"></script>
 <br>
 
-All items have a name and can be used, but different items behave differently when used. When you’re playing the game, you press the same button to use an item regardless of how that item works. The details of what happens when an item is used are specific to the item itself.
+All items have a name and can be used, but not all items work the same or have the same effects. When you're playing the game, though, you press the same button to use an item regardless of which one you have. At the level of a button press, the game doesn't need to know which specific item you're holding, and this vastly simplifies things for the program.
 
-We can capture this idea in our code by defining what a generic `Item` is, and then letting specific items control how they behave when used. This lets the rest of the program treat all items the same: pick up an Item, then use it.
+Using object-oriented programming, we can let each specific item define how it behaves when used, while the rest of the game only needs to know how to work with a generic `Item`. This lets the program treat all items the same: pick up an `Item`, then use it.
 
-Let’s model a generic `Item` in pseudocode and in the programming language Python. In Python, an object is called a `class`, which defines the attributes and methods that objects of the class all have.
+Let's model a generic `Item` in pseudocode and in the programming language **Python**. In Python, a blueprint for an object is called a `class`, which defines the attributes and methods that objects of the class all have.
+
+<small>Note: New to seeing things formatted like <code>Item</code> or <code>class</code>? This special format just shows that we're talking about code.</small>
 
 <br>
 <div id="multiple-choice-quiz-class-name"
@@ -71,7 +89,7 @@ Let’s model a generic `Item` in pseudocode and in the programming language Pyt
 <script type="module" src="../assets/MultipleChoiceQuiz.js"></script>
 <br>
 
-A class represents a category of objects that share the same attributes and behaviors. Here, we're defining what's called a **base class**: a blueprint for other, more specific class types to follow. We'll see concretely how that works later.
+A class represents a category of objects that share the same attributes and behaviors. Here, we're defining what's called a **base class**: a blueprint for other, more specific class types (Hint: 🍌, 🍄, ⭐) to follow. We'll see concretely how that works later.
 
 For now, here's what an `Item` class might look like in simplified "pseudocode" and in actual Python code. Don't worry about the exact syntax yet (things like `__init__` or `self`). For now, focus on how we're capturing **attributes** - what the object *is* - and **methods** - functions that show what the object *can do*.
 
@@ -86,7 +104,7 @@ CLASS Item
         # We&apos;ll let specific items implement their own method use()'
     data-python='
 class Item:
-    def __init__(self, name: str):
+    def __init__(self, name):
         self.name = name
 
     def use(self):
@@ -98,7 +116,9 @@ class Item:
 
 Notice we don't specify any instructions for what a generic item does when we `use()` it. Different item categories in MarioKart work differently, so we'll create more specific types of items, following this base class's blueprint, and define what it means to use each of these specific items.
 
-One of the most iconic items is the banana - roll over a banana and it'll cause your Kart to slip and spin out! When you use a banana, or any other projectile item like a shell, you can choose whether to throw it in front of or behind your kart. So when we `use()` this type of item, we need to know what direction it's being thrown in. `direction` can be a **parameter** that we pass to our method like: `use(direction)`. `direction` will either be "forward" or "backward".
+## Modeling a ProjectileItem
+
+One of the most iconic items is the banana - roll over a banana and it'll cause your Kart to slip and spin out! When you use a banana, or any other projectile item like a shell, you can choose whether to throw it in front of or behind your kart. So when we `use()` this type of item, we need to know what direction it's being thrown in. `direction` can be a **parameter** that we pass to our method like: `use(direction)`. `direction` will either be "forward" or "backward". Pay attention to how we use the parameter in the function.
 
 <br>
 <div id="code-comparison-item"
@@ -107,9 +127,9 @@ CLASS ProjectileItem EXTENDS Item
 
     METHOD use(direction)
         IF direction is "forward"
-            # shoot the item in front of the kart
+            PRINT "self.name is shot in front of the kart."
         IF direction is "backward"
-            # shoot the item behind the kart
+            PRINT "self.name is shot behind the kart."
         ELSE
             ERROR'
     data-python='
@@ -127,9 +147,46 @@ class ProjectileItem(Item):
 <script type="module" src="../assets/CodeComparison.js"></script>
 <br>
 
+<br>
+<div id="multiple-choice-quiz-direction"
+    data-question='In the Python code above, how do we use our parameter &lt;code&gt;direction&lt;/code&gt;?'
+    data-options='["We check its value", "We change its value"]'
+    data-correct-answer="0"
+    data-explanations='["We use if statements to check whether <code>direction</code> is &apos;forward&apos; or &apos;backward&apos;.", "Actually we don&apos;t change its value - look at the &apos;IF&apos; statements. We use those to check if <code>direction</code> is &apos;forward&apos; or &apos;backward&apos;."]'>
+</div>
+<script type="module" src="../assets/MultipleChoiceQuiz.js"></script>
+<br>
+
+Now, what might happen if `direction` is set to "left"? Take a guess, then run the code to see what happens.
+
+<br>
+<div id="reflection-quiz-wrong-direction"
+    data-question='What will happen if &lt;code&gt;direction = "left"&lt;/code&gt;?'
+    data-options='["It will print \"Item is shot to the left of the kart.\"", "The code will error"]'
+    data-explanations='["Look at where we check the values of &lt;code&gt;direction&lt;/code&gt;. We have two &lt;code&gt;IF&lt;/code&gt;s. What happens if neither of those &lt;code&gt;IF&lt;/code&gt;s are true? Think about it, then try running the code next and see what happens!", "Now try running the code to see if you were right!"]'>
+</div>
+<script type="module" src="../assets/MultipleChoiceQuiz.js"></script>
+<br>
+
+<br>
+<div id="code-runner-wrong-direction"
+    data-code='banana_1 = ProjectileItem("banana")
+banana_1.use("left")'
+    data-output='Traceback (most recent call last):
+  File "main.py", line 2, in &lt;module&gt;
+    banana_1.use("left")
+  File "main.py", line 8, in use
+    raise ValueError(f"Invalid direction: {direction}. Must be &quot;forward&quot; or &quot;backward&quot;.")
+ValueError: direction must be &apos;forward&apos; or &apos;backward&apos;.'>
+</div>
+<script type="module" src="../assets/CodeRunner.js"></script>
+<br>
+
+Check out that last line - `ValueError: direction must be 'forward' or 'backward'.` That's an error! We're only handling the **conditions** where `direction` is "forward" or "backward". If we 
+
 Note that `ProjectileItem` uses `self.name`, even though we never define `name` inside `ProjectileItem`. This works because `ProjectileItem` inherits from the base class `Item`, where we *did* define `name` as an attribute. Since every `Item` has a `name`, every `ProjectileItem` automatically has one too.
 
-In other words, when a class extends another class, it automatically gets all of the *parent* class’s attributes and methods. This is called **inheritance** and is how we can define sub-categories of objects. A banana belongs to the broad category or class called `Item`, and its specific sub-category or sub-class is a `ProjectileItem`.
+In other words, when a class extends another class, it automatically gets all of the *parent* class's attributes and methods. This is called **inheritance** and is how we can define sub-categories of objects. A banana belongs to the broad category or class called `Item`, and its specific sub-category or sub-class is a `ProjectileItem`.
 
 <br>
 
@@ -137,9 +194,9 @@ In other words, when a class extends another class, it automatically gets all of
 
 <br>
 
-We’ve modeled the basics of what an item is and can do and how projectile items specifically work. Next, let’s look at how items interact with another object in the game - karts.
+We've modeled the basics of what an item is and can do and how projectile items specifically work. Next, let's look at how items interact with another object in the game - karts.
 
-We already know how to model a simple object. Now we’ll challenge ourselves by modeling a `Kart`, which is a bit more complicated. In the full game, karts can accelerate, brake, and steer - but for now, we’ll focus only on how a kart is affected by items.
+We already know how to model a simple object. Now we'll challenge ourselves by modeling a `Kart`, which is a bit more complicated. In the full game, karts can accelerate, brake, and steer - but for now, we'll focus only on how a kart is affected by items.
 
 <br>
 <div id="multiple-choice-quiz-banana"
@@ -151,7 +208,7 @@ We already know how to model a simple object. Now we’ll challenge ourselves by
 <script type="module" src="../assets/MultipleChoiceQuiz.js"></script>
 <br>
 
-Hitting a banana doesn’t give you an item - it changes the state of your kart. The kart is now spun out, and that information needs to be remembered somewhere. We've seen this before, with our `Candle` object. The candle can be lit or unlit, and we can change its state by lighting it or blowing it out.
+Hitting a banana doesn't give you an item - it changes the state of your kart. The kart is now spun out, and that information needs to be remembered somewhere. We've seen this before, with our `Candle` object. The candle can be lit or unlit, and we can change its state by lighting it or blowing it out.
 
 Keeping that in mind, let's figure out how we want to include spinning out in our `Kart` model.
 
@@ -424,7 +481,7 @@ CLASS Item
         # We&apos;ll let specific items implement their own method use()'
     data-python='
 class Item:
-    def __init__(self, name: str):
+    def __init__(self, name):
         self.name = name
 
     def use(self):
@@ -487,9 +544,9 @@ CLASS ProjectileItem EXTENDS Item
 
     METHOD use(direction)
         IF direction is "forward"
-            # shoot the item in front of the kart
+            PRINT "self.name is shot in front of the kart."
         IF direction is "backward"
-            # shoot the item behind the kart
+            PRINT "self.name is shot behind the kart."
         ELSE
             ERROR'
     data-python='
@@ -584,7 +641,7 @@ else:
 In this lesson, we learned the basics of object-oriented programming. We:
 - created objects with attributes (state) and methods (behavior)
 - created base classes that define shared structure and behavior for related objects
-- showed how objects can interact by calling each other’s methods
+- showed how objects can interact by calling each other's methods
 
 Great work!
 
