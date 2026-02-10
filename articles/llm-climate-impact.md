@@ -3,28 +3,35 @@ layout: default
 title: LLM Climate Impact
 ---
 
-# The Energy Cost of Generative AI
+# WIP: The Energy Cost of Generative AI
 
-Every time you use Generative AI, like ChatGPT, Claude, or run a google search that gives an AI overview, a server running at a huge data center must process your search, which requires electricity.
-
-A lot of things that we do require electricity, but sometimes it's less obvious when something is power-hungry. When you plug your phone charger into the wall, you know that it's drawing electricity. But when you watch videos on your phone, not only is your phone power draining, but a server somewhere is transmitting that video to your phone for you to watch. And that server is plugged in and demanding power too.
-
-Being power-hungry in itself is not the whole problem. Electricity is life-saving! Imagine trying to get through a hot summer without air conditioning, which requires electricity. This is unfortunately the reality for many people who face life-threatening heat waves every year. We should expand electricity access to as many people as possible.
-
-But where does electricity come from? Check out this chart from [Our World In Data](https://ourworldindata.org/energy-mix). You can hover your mouse over the chart to see information about the TWh, or Terrawatt-hours, of electricity was consumed from each source, annually. You can also drag the slider at the bottom to adjust the time frame you're looking at. Try dragging the left slider to the right to see recent trends in energy consumption by source. See if you can answer the following:
-
-<iframe src="https://archive.ourworldindata.org/20260119-065148/grapher/energy-consumption-by-source-and-country.html?stackMode=absolute&tab=chart" loading="lazy" style="width: 100%; height: 600px; border: 0px none;" allow="web-share; clipboard-write"></iframe>
+**This article is unfinished. In its current state, it exists to setup and showcase the [interactive demo towards the end](#switching-to-renewables) that I'm really proud of so please check it out!**
 
 <br>
 
 ---
+
+<br>
+
+## Where energy comes from
+
+Every time you use Generative AI - like ChatGPT, Claude, or an AI-powered search - a server in a data center has to run computations. That requires electricity.
+
+Electricity itself isn’t "bad." It's essential (think air conditioning during dangerous heat waves). The problem is **where the electricity comes from**. If a lot of that power is produced by burning fossil fuels, then more computing can mean more carbon emissions.
+
+Unfortunately right now, a lot of global electricity *is* coming from fossil fuels. Check out this chart from [Our World In Data](https://ourworldindata.org/energy-mix).
+
+<iframe src="https://archive.ourworldindata.org/20260119-065148/grapher/energy-consumption-by-source-and-country.html?stackMode=absolute&tab=chart" loading="lazy" style="width: 100%; height: 600px; border: 0px none;" allow="web-share; clipboard-write"></iframe>
+<br>
+
+You can hover your mouse over the chart to see information about the terawatt-hours (TWh) of electricity that was consumed from each source over the years. You can also drag the slider at the bottom to adjust the time frame you're looking at. Try dragging that slider to the right to see recent trends in energy consumption by source. See if you can find the answer to the following question:
 
 <br>
 <div id="multiple-choice-quiz"
     data-question="As of 2020, what was the biggest source of energy across the world?"
     data-options='["Solar", "wind", "Coal", "Oil"]'
     data-correct-answer="3"
-    data-explanations='["Not quite. If you hover your mouse above 2020 on the chart, you can see electricity consumption by each source. Which source served the biggest number of TWh?", "Not quite. If you hover your mouse above 2020 on the chart, you can see electricity consumption by each source. Which source served the biggest number of TWh?", "Not quite. If you hover your mouse above 2020 on the chart, you can see electricity consumption by each source. Which source served the biggest number of TWh?", "Exactly! Oil was burned to supply the majority of the world&apos;s electricity in 2020."]'>
+    data-explanations='["If you hover your mouse above 2020 on the chart, you can see electricity consumption by each source. Which source served the biggest number of TWh?", "If you hover your mouse above 2020 on the chart, you can see electricity consumption by each source. Which source served the biggest number of TWh?", "If you hover your mouse above 2020 on the chart, you can see electricity consumption by each source. Which source served the biggest number of TWh?", "Oil was burned to supply the majority of the world&apos;s electricity in 2020."]'>
 </div>
 <script type="module" src="../assets/MultipleChoiceQuiz.js"></script>
 <br>
@@ -33,114 +40,78 @@ But where does electricity come from? Check out this chart from [Our World In Da
 
 <br>
 
-Many of these energy sources come with a major downside. The following are all fossil fuels, and burning them emits carbon dioxide ($CO_{2}$) and contribute to climate change.
-- Oil
-- Coal
-- Gas
-- Biofuels
+## Switching to renewables
 
-On the other hand, renewables (like solar and wind) and low-carbon sources (like nuclear) supply energy with a much lower carbon footprint. Earlier I said that a technology being power-hungry in itself isn't the whole story - it's also the fact that we're burning fossil fuels to supply that power.
+In general, we want to switch our power supply to come from renewable sources (like solar and wind) and low-carbon sources (like nuclear, although this is controversial due to safety concerns).
 
-What can we do about this?
+However, it can be difficult to match our current constant electricity demand with certain renewable sources that only deliver power intermittently. AI in particular is a technology that [demands constant power](https://www.technologyreview.com/2025/05/20/1116327/ai-energy-usage-climate-footprint-big-tech/).
 
 <br>
-
----
-
-<br>
-
-<div id="reflection-quiz"
-    data-question="What should we do about the carbon footprint of AI?"
-    data-options='["Make AI more energy-efficient", "Decrease AI usage", "Switch to renewable energy", "Can we do all three?"]'
-    data-explanations='["This would definitely help! Decreasing AI usage overall and powering it using renewables would also go far.", "This would definitely help! Making AI more energy efficient and powering it using renewables would also be great.", "This would definitely help! Making AI more energy efficient and decreasing AI use overall would also be great.", "Great idea! Why not tackle the problem from as many sides as we can?"]'>
-</div>
-<script type="module" src="../assets/ReflectionQuiz.js"></script>
-
-<br>
-
----
-
-<br>
-
-Let's explore some of these options.
-
-### Making AI more energy-efficient
-Let's consider first making AI more energy-efficient. The idea is that if we can make AI demand less energy, then its overall carbon footprint will decrease. But is it that simple?
-
-There are ways to increase the energy efficiency of AI. AI may appear magic, but behind the curtain, it's all math! (And not a literal man behind a curtain, typing out responses, in case you were wondering.)
-
-<div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; margin: 2rem 0;">
-  <iframe 
-    style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"
-    src="https://www.youtube.com/embed/-RQxD4Ff7dY?si=xnX6v2Mf8lf205lE" 
-    frameborder="0" 
-    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-    allowfullscreen>
-  </iframe>
-</div>
-
-A generative AI model makes trillions of calculations as it outputs your text, image, or video. And the computer chip "serving" the model demands electricity while the model furiously calculates. Researchers are looking into ways to decrease the number of calculations that must be made while still allowing the model to work well. They are also improving the energy efficiency of the chip itself, similar to how scientists invented more energy efficient LED bulbs compared to fluorescent bulbs.
-
-So, it's possible to improve efficiency! Let's say we improve the efficiency of AI. Let's also assume that the biggest factor in the cost of companies serving AI is its energy consumption. What do you think might happen to the cost of AI?
-
-<br>
-<div id="multiple-choice-quiz-efficiency"
-    data-question="If AI is more efficient, will the cost of using AI go up or down for users?"
-    data-options='["Cost will go up", "Cost will go down"]'
+<div id="multiple-choice-quiz-night"
+    data-question="For example, are we able to get energy from our solar panels at night?"
+    data-options='["Yes", "No", "I&apos;m not sure"]'
     data-correct-answer="1"
-    data-explanations='["Not quite. If AI is more energy efficient, it will likely be cheaper for companies to serve.", "Exactly. If AI is more energy efficient, it will likely be cheaper for companies to serve."]'>
+    data-explanations='["Will the solar panels work if the sun isn&apos;t up to shine on them?", "The solar panels can&apos;t generate any electricity if the sun isn&apos;t shining on them.", "That&apos;s okay! The next demo should help you figure it out."]'>
 </div>
 <script type="module" src="../assets/MultipleChoiceQuiz.js"></script>
 <br>
 
-And if AI is cheaper for consumers, what might happen?
-
-<br>
-<div id="multiple-choice-quiz-tradeoff"
-    data-question="What might happen if AI is cheaper?"
-    data-options='["People will use it more, or more people will start to use it", "People will use it less, or fewer people will use it overall"]'
-    data-correct-answer="0"
-    data-explanations='["Exactly! If the technology becomes more affordable, more people will use it.", "Not quite. If the technology is more affordable, more people will be able to use it and people will use it more!"]'>
-</div>
-<script type="module" src="../assets/MultipleChoiceQuiz.js"></script>
-<br>
-
-Let's pull it all together. The chart below shows how the energy efficiency of AI relates to the usage cost and the overall energy demand of AI. TODO: Add a line showing cost going down.
-
-<br>
-<div id="jevons-paradox"></div>
-<script type="module" src="../assets/JevonsParadox.js"></script>
-<br>
-
-<br>
-<div id="multiple-choice-quiz-jevons"
-    data-question="According to the graph, how does energy efficiency affect AI energy demand?"
-    data-options='["Overall energy demand goes up despite efficiency improvements.", "Overall energy demand goes down due to efficiency improvements."]'
-    data-correct-answer="0"
-    data-explanations='["You nailed it! At first glance this may seem counterintuitive, but now you see how efficiency can actually lead to increased overall energy demand.", "Not quite. The graph actually shows that overall energy demand goes up, despite efficiency improvements. When AI is more efficient, it can also be more affordable, which causes people to use it more, causing the overall energy demand to outpace the energy saved by efficiency improvements."]'>
-</div>
-<script type="module" src="../assets/MultipleChoiceQuiz.js"></script>
-<br>
-
-This is called **Jevons Paradox**, and researchers like Sasha Luccioni, Emma Strubell, and Kate Crawford [are concerned about how it might show up with AI](https://dl.acm.org/doi/10.1145/3715275.3732007).
-
-So, while energy efficiency improvements are inevitable with AI, we shouldn't count on them to lower the overal carbon footprint of AI.
-
-
-### Switch to renewable energy
-We've seen how the energy demand of AI might go up due to increased demand. Energy consumption contributes to climate change when we're burning fossil fuels for energy. 
-
-- unprecedented demand creating urgency - we don't have time to build new solar, wind, and batteries, we have to use what we have. Reopening coal plants
-- demand for AI is constant, while renewables are intermittent
-
-<br>
+In the demo below, you can manipulate things like the wind speed, the time of day, and how much the power plant is burning fossil fuels. Start by adjusting each of the sliders and noticing what happens in the animation. Then, look below the animation to see how these changes affect the power output for each source.
 
 <div id="energy-source-demo"></div>
 <script type="module" src="../assets/EnergySourceDemo.js"></script>
 
+<br>
+<div id="demo-state-quiz-wind"
+    data-demo-id="energy-source-demo"
+    data-question="Setup the demo so we're maximizing the output from the windmill."
+    data-validation-rule="windSpeed:100"
+    data-correct-message="Correct! Maximum wind speed (100%) produces the highest power output from the windmill."
+    data-incorrect-message="Not quite. Does the windmill produce more energy when it's moving faster or slower?">
+</div>
+<script type="module" src="../assets/DemoStateQuiz.js"></script>
+
+<br>
+<div id="demo-state-quiz-solar"
+    data-demo-id="energy-source-demo"
+    data-question="Setup the demo so we're maximizing the output from the solar panels."
+    data-validation-rule="hourOfDay:12"
+    data-correct-message="Correct! Solar panels produce peak output at noon (12:00 PM) when the sun is directly overhead."
+    data-incorrect-message="Not quite. Think about when the sun is strongest during the day. Try adjusting the time of day slider and see when the Solar line (orange) is the highest.">
+</div>
+<script type="module" src="../assets/DemoStateQuiz.js"></script>
+
+<br>
+<div id="demo-state-quiz-fossil"
+    data-demo-id="energy-source-demo"
+    data-question="Setup the demo so we're maximizing the output from the fossil fuel plant."
+    data-validation-rule="fossilBurning:5"
+    data-correct-message="Correct! The fossil fuel plant produces maximum output when it's at its highest burning level."
+    data-incorrect-message="Not quite. Does the power plant generate more energy when it's burning more or when it's burning less? Try adjusting the Fossil Fuel Burning slider and see when the Fossil Fuel line (purple) is the highest.">
+</div>
+<script type="module" src="../assets/DemoStateQuiz.js"></script>
+<br>
+
+In this demo, we can manipulate things like wind and solar with the sliders. But in reality, we don't have control over how fast the wind blows or whether the sun is up and the sky is clear. We can control how much we burn fossil fuels though, which is one of the reasons why they've stuck around even though renewable sources are now cheaper - they can provide constant energy.
+
+Does that mean all hope is lost? **Of course not!**
+
+Solar and wind are not the only renewable sources of energy, and they're not the only solutions to this problem. They are and will continue to be a huge part of our clean energy transition, but they'll share that stage with:
+- batteries, which can store excess energy for when we need it (like on windless nights)
+- nuclear power, which generates electricity using controlled nuclear reactions
+- hydropower and geothermal energy
+- And perhaps new technologies that we haven't even discovered or invented yet!
+
+I'll leave you with one last chart, again from [Our World in Data](https://ourworldindata.org/renewable-energy). Renewable energy is on the rise!
+
+<iframe src="https://archive.ourworldindata.org/20260119-065148/grapher/modern-renewable-energy-consumption.html?tab=chart" loading="lazy" style="width: 100%; height: 600px; border: 0px none;" allow="web-share; clipboard-write"></iframe>
+
+<br>
+
+---
+
+<br>
+
 Image sources:
 - [Solar Panels](https://www.flaticon.com/free-icon/solar-panel_5733161)
 - [Factory Icon](https://www.freeiconspng.com/images/factory-icon)
-
-
-### Decreasing AI usage

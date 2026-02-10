@@ -245,6 +245,7 @@ function EnergySourceDemo() {
                             value={windSpeed}
                             onChange={(e) => setWindSpeed(Number(e.target.value))}
                             style={{ width: '100%' }}
+                            data-state="windSpeed"
                         />
                     </div>
 
@@ -259,6 +260,7 @@ function EnergySourceDemo() {
                             value={hourOfDay}
                             onChange={(e) => setHourOfDay(Number(e.target.value))}
                             style={{ width: '100%' }}
+                            data-state="hourOfDay"
                         />
                     </div>
 
@@ -273,6 +275,7 @@ function EnergySourceDemo() {
                             value={fossilBurning}
                             onChange={(e) => setFossilBurning(Number(e.target.value))}
                             style={{ width: '100%' }}
+                            data-state="fossilBurning"
                         />
                     </div>
                 </div>
