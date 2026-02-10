@@ -5,7 +5,7 @@ title: Object Oriented Programming with MarioKart
 
 # Object-Oriented Programming with MarioKart
 
-**Audience**: High school students or adults new to programming. No prior experience is required, but some familiarity with code may be helpful.
+**Audience**: High school students or adults with some exposure to coding. 
 
 <small>*Not optimized for mobile devices (yet). Some interactive widgets may not work properly on a phone or tablet.*</small>
 
@@ -291,15 +291,34 @@ class Kart:
 <script type="module" src="../assets/CodeComparison.js"></script>
 <br>
 
+Let's test it out.
+
+```python
+my_kart = Kart()
+banana = ProjectileItem("banana")
+```
+
+<br>
+<div id="animated-action-button-green-shell"
+    data-button-text="banana.use(my_kart)"
+    data-gif-path="../assets/images/mariokart.gif"
+    data-duration="3000">
+</div>
+<script type="module" src="../assets/AnimatedActionButton.js"></script>
+
+<div style="text-align: center;"><small><a href="https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExbmtyMDd5YXIycmZzZnkwcnlvZjhiamJkbHB2b3VnZXNlcHA0YnUxciZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/10RgZyfaX0HBSg/giphy.gif">GIF Credit - Giphy</a></small></div>
+
+<br>
+
 We now have a basic model for a kart! But a car that can only spin out isn't very fun. Let's also allow our car to become invincible.
+
+## Modeling InvincibilityItem
 
 <div style="text-align: center; margin: 1.5rem 0;">
   <img src="../assets/images/princess-peach-mario-kart.gif" alt="Princess Peach uses a star to turn invincible!" style="max-width: 500px; border-radius: 8px;">
 </div>
 
 <div style="text-align: center;"><small><a href="https://tenor.com/view/princes-speach-mario-kart-superstar-gif-10116704">GIF Credit - Tenor</a></small></div>
-
-## Modeling InvincibilityItem
 
 In MarioKart, the Star item makes you invincible to all attacks. (It also triggers some triumphant music!) Using a star affects your kart, so how will we reflect that?
 
@@ -601,7 +620,7 @@ class InvincibilityItem(Item):
 <br>
 
 ## Putting it together
-Finally, let's test out everything we've built! First, we'll need to create a `Kart`. Let's go ahead and do this in Python - can you guess how we set it up?
+Finally, let's test out everything we've built! First, we'll need to create a `Kart`. Let's go ahead and do this in Python - can you remember how we set it up?
 
 <br>
 <div id="multiple-choice-quiz-create-kart"
