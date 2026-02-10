@@ -594,5 +594,14 @@ Our toy MarioKart code is still a long way from the full game, but hopefully you
 - add stats to `Kart`s like top speed, acceleration, or recovery time
 - introduce more `Item`s that all share the same `use()` interface but behave differently
 
-Thanks for building this with me and I'll see you on the course!
+Thanks for building this with me and I'll see you out on the track!
 
+<br>
+<br>
+
+---
+
+<br>
+
+### AI Use
+The narrative content and idea for this article are entirely my own. AI was used to generate code for the widgets, per my designs. My final outline, before AI was used, is available [here](https://github.com/FarynWoods/interactive-learning/blob/15964444fdabf5448be39e2f8414b1449d5253c4/articles/double_dash.md). Further editing was done by me after this version, but it captures my original outline before using code assistance to add in the interactive widgets.
