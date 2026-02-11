@@ -1,9 +1,9 @@
 ---
 layout: default
-title: Object Oriented Programming with MarioKart
+title: Object Oriented Programming with Mario Kart
 ---
 
-# Object-Oriented Programming with MarioKart
+# Object-Oriented Programming with Mario Kart
 
 **Audience**: High school students or adults with some exposure to coding. 
 
@@ -39,11 +39,11 @@ Below, you can choose the color of the candle and press buttons to light it or b
 
 <br>
 
-## Modeling Items in MarioKart
+## Modeling Items in Mario Kart
 
-Now let's look at a more exciting example—MarioKart! MarioKart is a series of racing games published by Nintendo. Don't worry if you're not familiar with the games. We'll cover anything specific to MarioKart that you need to know.
+Now let's look at a more exciting example—Mario Kart! Mario Kart is a series of racing games published by Nintendo. Don't worry if you're not familiar with the games. We'll cover anything specific to Mario Kart that you need to know.
 
-MarioKart has a lot of different objects we could model, for example, the **items**. Some items you aim at other cars hoping you land a hit and can pass them while they spin out.
+Mario Kart has a lot of different objects we could model, for example, the **items**. Some items you aim at other cars hoping you land a hit and can pass them while they spin out.
 
 <div style="text-align: center; margin: 1.5rem 0;">
   <img src="../assets/images/luigi.webp" alt="Luigi hits Rosalina with a red shell and passes her with a sneer." style="max-width: 500px; border-radius: 8px;">
@@ -69,7 +69,7 @@ Some items, like Mushrooms, give your kart a temporary speed boost. A Star gives
 
 Different categories of items behave differently, but they also have some things in common.
 
-Let's sort out things that *all* MarioKart items have in common compared to what might be specific attributes of certain kinds of items.
+Let's sort out things that *all* Mario Kart items have in common compared to what might be specific attributes of certain kinds of items.
 
 <div id="attribute-sorting"></div>
 <script type="module" src="../assets/AttributeSorting.js"></script>
@@ -95,7 +95,7 @@ Let's model a generic `Item` in **pseudocode**—a simplified way of describing 
 <script type="module" src="../assets/MultipleChoiceQuiz.js"></script>
 <br>
 
-A **class** represents a category of objects that share the same attributes and behaviors (in this case, all `Items` in MarioKart have in common that they have names and can be used by pressing a button). Here, we're defining what's called a **base class**: a blueprint for other, more specific class types to follow (Hint: 🍌, 🍄, ⭐). We'll see concretely how that works later.
+A **class** represents a category of objects that share the same attributes and behaviors (in this case, all `Items` in Mario Kart have in common that they have names and can be used by pressing a button). Here, we're defining what's called a **base class**: a blueprint for other, more specific class types to follow (Hint: 🍌, 🍄, ⭐). We'll see concretely how that works later.
 
 For now, here's what an `Item` class might look like in pseudocode and in Python. Don't worry about the exact syntax yet (things like `__init__` or `self`). For now, focus on how we're capturing **attributes**—what the object *is*—and **methods**—functions that show what the object *can do*.
 
@@ -120,13 +120,13 @@ class Item:
 <script type="module" src="../assets/CodeComparison.js"></script>
 <br>
 
-Notice we don't specify any instructions for what a generic item does when we `use()` it. Different item categories in MarioKart work differently, so we'll create more specific types of items, following this base class's blueprint, and define what it means to use each of these specific items.
+Notice we don't specify any instructions for what a generic item does when we `use()` it. Different item categories in Mario Kart work differently, so we'll create more specific types of items, following this base class's blueprint, and define what it means to use each of these specific items.
 
 ## Modeling a Projectile Item
 
 ### Creating our blueprint
 
-One of the most iconic items in MarioKart is the banana—roll over a banana and it'll cause your kart to slip and spin out! When you use a banana, a turtle shell, or any other projectile item, you can choose whether to throw it in front of or behind your kart. So when we `use()` this type of item, we need to know what direction it's being thrown in. `direction` will be a **parameter** that we pass to our method like: `use(direction)`. `direction` will either be "forward" or "backward". Pay attention to how we use the parameter in the method.
+One of the most iconic items in Mario Kart is the banana—roll over a banana and it'll cause your kart to slip and spin out! When you use a banana, a turtle shell, or any other projectile item, you can choose whether to throw it in front of or behind your kart. So when we `use()` this type of item, we need to know what direction it's being thrown in. `direction` will be a **parameter** that we pass to our method like: `use(direction)`. `direction` will either be "forward" or "backward". Pay attention to how we use the parameter in the method.
 
 <br>
 <div id="code-comparison-item"
@@ -171,7 +171,7 @@ We check the value of `direction` and if it equals "forward", then we throw the 
 
 We've finished creating our blueprint for a `ProjectileItem`, so let's test our new item! First, we use our `ProjectileItem` blueprint to create a particular **instance** of that type of item—it could be a banana, a shell, a "bob-omb", or any other item that shares the functionality and attributes of a `ProjectileItem`.
 
-In Python, we create a specific **instance** of a **class** by saving it to a **variable**. A variable is how we save that item so we can reference it later. Here's how we could create a few items; there are always tons of items in a game of MarioKart!
+In Python, we create a specific **instance** of a **class** by saving it to a **variable**. A variable is how we save that item so we can reference it later. Here's how we could create a few items; there are always tons of items in a game of Mario Kart!
 
 ```python
 banana_1 = ProjectileItem("banana")
@@ -261,7 +261,7 @@ We've modeled the basics of what items are and what they can do and how projecti
 
 <br>
 <div id="multiple-choice-quiz-banana"
-    data-question='In MarioKart, what happens when you run over a banana?'
+    data-question='In Mario Kart, what happens when you run over a banana?'
     data-options='["You gain a banana item", "Your car spins out"]'
     data-correct-answer="1"
     data-explanations='["Actually, if you run over a banana, your car spins out and you can&apos;t make forward progress for a moment.", ""]'>
@@ -372,7 +372,7 @@ We now have a basic model for a kart! But a car that can only spin out isn't ver
 
 <br>
 
-In MarioKart, the Star item makes you invincible to all attacks. (It also triggers some triumphant music!) Using a Star affects your kart, so how will we reflect that?
+In Mario Kart, the Star item makes you invincible to all attacks. (It also triggers some triumphant music!) Using a Star affects your kart, so how will we reflect that?
 
 Let's start by updating `Kart`—it now needs to be able to become invincible and keep track of whether it is currently invincible or not. Let's model it the same way we did spinning out—we'll have methods for becoming invincible and losing invincibility, and the state of being invincible or not will be captured in an attribute.
 
@@ -738,7 +738,7 @@ In this lesson, we learned some basics of object-oriented programming. We:
 
 Great work!
 
-Our toy MarioKart code is still a long way from the full game, but hopefully you can see how we might keep tinkering away to include more and more of the game's features. From here, there are lots of directions you could explore:
+Our toy Mario Kart code is still a long way from the full game, but hopefully you can see how we might keep tinkering away to include more and more of the game's features. From here, there are lots of directions you could explore:
 
 - create a `Character` class, where each character has a special item that only *they* can get
 - add stats to `Kart`s like top speed, acceleration, or recovery time
@@ -758,11 +758,11 @@ In future iterations of this article, I would like to:
 - Break this big article into a sequential course. Each lesson reviews the previous lesson before diving into the new context.
 - Include code demonstrations that allow the user to drag and drop code blocks. Allow them to run it and see what happens - designing it so that it's obvious when things aren't working quite right and hints at what's wrong. (Pseudo-error traces?)
 - Render all code in widgets with proper syntax highlighting - makes code much more readable
-- MarioKart is fun and familiar, but modeling a generic racing game instead might be less distracting for users ("why doesn't this work exactly like it does in the game?"). This also allows for making subtle references that MarioKart / racing game fans will recognize and be excited about, without excluding those who are unfamiliar.
+- Mario Kart is fun and familiar, but modeling a generic racing game instead might be less distracting for users ("why doesn't this work exactly like it does in the game?"). This also allows for making subtle references that Mario Kart / racing game fans will recognize and be excited about, without excluding those who are unfamiliar.
 
 ### AI Use
 Here was my process for developing this article:
-- Came up with the idea (using MarioKart to teach OOP) on my own
+- Came up with the idea (using Mario Kart to teach OOP) on my own
 - Developed the narrative and ideas for interactive widgets on my own. That draft is viewable [here](https://github.com/FarynWoods/interactive-learning/blob/15964444fdabf5448be39e2f8414b1449d5253c4/articles/double_dash.md).
 - Used AI to generate the code for the interactive widgets, per my specifications.
 - While editing the final draft, most of the edits are my own but I used AI to offer suggestions when I was stuck.

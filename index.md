@@ -7,5 +7,5 @@ A collection of interactive articles exploring computer science, AI, and learnin
 
 ## Articles
 
-- [Object Oriented Programming with MarioKart](articles/double_dash.html)
+- [Object Oriented Programming with Mario Kart](articles/double_dash.html)
 - [LLM Climate Impact](articles/llm-climate-impact.html)
