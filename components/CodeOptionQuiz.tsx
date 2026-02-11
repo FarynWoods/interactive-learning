@@ -46,8 +46,7 @@ function CodeOptionQuiz({ question, options, correctAnswer, explanations }: Code
                 fontSize: '16px',
                 lineHeight: '1.6',
                 fontWeight: 500
-            }}>
-                {question}
+            }} dangerouslySetInnerHTML={{ __html: question }}>
             </p>
 
             {/* Navigation buttons */}
@@ -211,8 +210,7 @@ function CodeOptionQuiz({ question, options, correctAnswer, explanations }: Code
                             <p style={{ marginBottom: '4px', fontWeight: '500' }}>
                                 {isCorrect ? 'Correct! Well done!' : 'Not quite right.'}
                             </p>
-                            <p style={{ fontSize: '14px', opacity: 0.9 }}>
-                                {explanations[currentOption]}
+                            <p style={{ fontSize: '14px', opacity: 0.9 }} dangerouslySetInnerHTML={{ __html: explanations[currentOption] }}>
                             </p>
                         </div>
                     </div>

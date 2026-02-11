@@ -17,7 +17,7 @@ title: Object Oriented Programming with MarioKart
 
 ## Intro to Object-Oriented Programming
 
-In programming, there are many different ways to think about and solve a problem. Some approaches focus on steps and instructions (like a recipe), while others focus on the data being processed.
+In programming, there are many different ways to think about and solve a problem. Some approaches focus on steps and instructions (like a recipe), while others focus on the *things* involved in the problem and what they can do (like the ingredients and tools in a kitchen).
 
 **Object-oriented programming (OOP)** is a way of writing programs by modeling parts of a problem as individual **objects.**
 
@@ -25,7 +25,7 @@ An object represents something meaningful in the problem you're solving. Objects
 
 For example, we could model a candle as an object. A candle can be lit or unlit, and there are specific actions we can take that change that **state**: you can light an unlit candle, or blow out a lit one.
 
-A candle also has characteristics we might want to store, like its color and its height. The height changes over time, but only while the candle is lit - so knowing whether the candle is lit or unlit matters to how the candle behaves.
+A candle also has characteristics we might want to store, like its color and its height. The height changes over time, but only while the candle is lit—so knowing whether the candle is lit or unlit matters to how the candle behaves.
 
 In object-oriented programming, we can represent all of this by grouping the candle's data (its color, height, and whether it's lit) together with the actions that affect it (lighting and blowing it out) into a single object.
 
@@ -41,17 +41,21 @@ Below, you can choose the color of the candle and press buttons to light it or b
 
 ## Modeling Items in MarioKart
 
-Now let's look at a more exciting example - MarioKart! MarioKart has a lot of different objects we could model, for example, the **items**. Some items you aim at other cars hoping you land a hit and can pass them while they spin out.
+Now let's look at a more exciting example—MarioKart! MarioKart is a series of racing games published by Nintendo. Don't worry if you're not familiar with the games. We'll cover anything specific to MarioKart that you need to know.
+
+MarioKart has a lot of different objects we could model, for example, the **items**. Some items you aim at other cars hoping you land a hit and can pass them while they spin out.
 
 <div style="text-align: center; margin: 1.5rem 0;">
   <img src="../assets/images/luigi.webp" alt="Luigi hits Rosalina with a red shell and passes her with a sneer." style="max-width: 500px; border-radius: 8px;">
 </div>
 
+<small><i>Luigi hits Rosalina with a red turtle shell and can pass her while she recovers control of her kart.</i></small>
+
 <div style="text-align: center;"><small><a href="https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExMjlnMmxkamhmZ3Y4cDh2OW9xOTNtNG9uYjZpZGZ2cG9xdjliZ201ZiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/NXDoaAmF7dkyc/giphy.gif">GIF Credit - Giphy</a></small></div>
 
 <br>
 
-Some items, like Mushrooms, give you a speed boost. A Star gives you invincibility.
+Some items, like Mushrooms, give your kart a temporary speed boost. A Star gives you invincibility from attacks like the one in the clip above.
 
 <div style="display: flex; justify-content: center; gap: 1rem; margin: 1.5rem 0; flex-wrap: wrap;">
   <img src="../assets/images/mushroom.webp" alt="Mushroom item" style="max-width: 150px; border-radius: 8px;">
@@ -71,11 +75,13 @@ Let's sort out things that *all* MarioKart items have in common compared to what
 <script type="module" src="../assets/AttributeSorting.js"></script>
 <br>
 
-All items have a name and can be used, but not all items work the same or have the same effects. When you're playing the game, though, you press the same button to use an item regardless of which one you have. At the level of a button press, the game doesn't need to know which specific item you're holding, and this vastly simplifies things for the program.
+What we demonstrated here is that all items have a name and can be used, but not all items work the same or have the same effects. 
+
+**Even though items have different effects, the game can interact with all of them in the same way.** When you're playing the game, you press the same button to use an item regardless of which one you have. At the level of a button press, the game doesn't need to know which specific item you're holding, and this vastly simplifies things for the program.
 
 Using object-oriented programming, we can let each specific item define how it behaves when used, while the rest of the game only needs to know how to work with a generic `Item`. This lets the program treat all items the same: pick up an `Item`, then use it.
 
-Let's model a generic `Item` in pseudocode and in the programming language **Python**. In Python, a blueprint for an object is called a `class`, which defines the attributes and methods that objects of the class all have.
+Let's model a generic `Item` in **pseudocode**—a simplified way of describing code without using any specific language—and in the programming language **Python**. In Python, a blueprint for an object is called a `class`, which defines the attributes and methods that objects of the class all have.
 
 <small>Note: New to seeing things formatted like <code>Item</code> or <code>class</code>? This special format just shows that we're talking about code.</small>
 
@@ -89,9 +95,9 @@ Let's model a generic `Item` in pseudocode and in the programming language **Pyt
 <script type="module" src="../assets/MultipleChoiceQuiz.js"></script>
 <br>
 
-A class represents a category of objects that share the same attributes and behaviors. Here, we're defining what's called a **base class**: a blueprint for other, more specific class types (Hint: 🍌, 🍄, ⭐) to follow. We'll see concretely how that works later.
+A **class** represents a category of objects that share the same attributes and behaviors (in this case, all `Items` in MarioKart have in common that they have names and can be used by pressing a button). Here, we're defining what's called a **base class**: a blueprint for other, more specific class types to follow (Hint: 🍌, 🍄, ⭐). We'll see concretely how that works later.
 
-For now, here's what an `Item` class might look like in simplified "pseudocode" and in actual Python code. Don't worry about the exact syntax yet (things like `__init__` or `self`). For now, focus on how we're capturing **attributes** - what the object *is* - and **methods** - functions that show what the object *can do*.
+For now, here's what an `Item` class might look like in pseudocode and in Python. Don't worry about the exact syntax yet (things like `__init__` or `self`). For now, focus on how we're capturing **attributes**—what the object *is*—and **methods**—functions that show what the object *can do*.
 
 <br>
 <div id="code-comparison-item"
@@ -116,9 +122,11 @@ class Item:
 
 Notice we don't specify any instructions for what a generic item does when we `use()` it. Different item categories in MarioKart work differently, so we'll create more specific types of items, following this base class's blueprint, and define what it means to use each of these specific items.
 
-## Modeling a ProjectileItem
+## Modeling a Projectile Item
 
-One of the most iconic items is the banana - roll over a banana and it'll cause your Kart to slip and spin out! When you use a banana, or any other projectile item like a shell, you can choose whether to throw it in front of or behind your kart. So when we `use()` this type of item, we need to know what direction it's being thrown in. `direction` can be a **parameter** that we pass to our method like: `use(direction)`. `direction` will either be "forward" or "backward". Pay attention to how we use the parameter in the function.
+### Creating our blueprint
+
+One of the most iconic items in MarioKart is the banana—roll over a banana and it'll cause your kart to slip and spin out! When you use a banana, a turtle shell, or any other projectile item, you can choose whether to throw it in front of or behind your kart. So when we `use()` this type of item, we need to know what direction it's being thrown in. `direction` will be a **parameter** that we pass to our method like: `use(direction)`. `direction` will either be "forward" or "backward". Pay attention to how we use the parameter in the method.
 
 <br>
 <div id="code-comparison-item"
@@ -152,48 +160,28 @@ class ProjectileItem(Item):
     data-question='In the Python code above, how do we use our parameter &lt;code&gt;direction&lt;/code&gt;?'
     data-options='["We check its value", "We change its value"]'
     data-correct-answer="0"
-    data-explanations='["We use if statements to check whether <code>direction</code> is &apos;forward&apos; or &apos;backward&apos;.", "Actually we don&apos;t change its value - look at the &apos;IF&apos; statements. We use those to check if <code>direction</code> is &apos;forward&apos; or &apos;backward&apos;."]'>
+    data-explanations='["We use <code>if</code> to check whether <code>direction</code> is &apos;forward&apos; or &apos;backward&apos;.", "Actually we don&apos;t change its value—look at how we use <code>IF</code>. We use those to check <i>if</i> <code>direction</code> is &apos;forward&apos; or &apos;backward&apos;."]'>
 </div>
 <script type="module" src="../assets/MultipleChoiceQuiz.js"></script>
 <br>
 
-Now, choose a `direction` and test it out for yourself.
+We check the value of `direction` and if it equals "forward", then we throw the item in front of the kart. If it equals "backward", we throw the item behind the kart. If it doesn't equal "forward" *or* "backward", we throw an error—we don't know what to do in that case!
 
-<br>
-<div id="interactive-code-runner-direction"
-    data-code-template='banana_1 = ProjectileItem("banana")
-banana_1.use(<direction>)'
-    data-output-template='banana is thrown <in front of/behind> the kart.'
-    data-choices='["forward", "backward"]'
-    data-choice-label='Choose a direction:'>
-</div>
-<script type="module" src="../assets/InteractiveCodeRunner.js"></script>
-<br>
+### Creating instances
 
-It's working!
+We've finished creating our blueprint for a `ProjectileItem`, so let's test our new item! First, we use our `ProjectileItem` blueprint to create a particular **instance** of that type of item—it could be a banana, a shell, a "bob-omb", or any other item that shares the functionality and attributes of a `ProjectileItem`.
 
-Now, going back to the code, note that `ProjectileItem` uses `self.name`, even though we never define `name` inside `ProjectileItem`. 
+In Python, we create a specific **instance** of a **class** by saving it to a **variable**. A variable is how we save that item so we can reference it later. Here's how we could create a few items; there are always tons of items in a game of MarioKart!
 
-```
-IF direction is "forward"
-    PRINT "self.name is thrown in front of the kart."
-IF direction is "backward"
-    PRINT "self.name is thrown behind the kart."
-```
-
-This works because `ProjectileItem` inherits from the base class `Item`, where we *did* define `name` as an attribute. Since every `Item` has a `name`, every `ProjectileItem` automatically has one too.
-
-In other words, when a class extends another class, it automatically gets all of the *parent* class's attributes and methods. This is called **inheritance** and is how we can define sub-categories of objects. A banana belongs to the broad category or class called `Item`, and its specific sub-category or sub-class is a `ProjectileItem`.
-
-You can see how we gave our `ProjectileItem` the name "banana" like so:
-
-```
+```python
 banana_1 = ProjectileItem("banana")
+banana_2 = ProjectileItem("🍌")  # you can give your item any name you want
+
+red_shell = ProjectileItem("red shell")
+my_shell = ProjectileItem("shell")  # and you can name your variable whatever you want
 ```
 
-<br>
-
-Try giving using different items by setting the name!
+Now that you know how to create an item, try using different projectile items by setting the `name` and **calling** (running) the `use()` method!
 
 <div id="interactive-code-runner-name"
     data-code-template='my_item = ProjectileItem("<name>")
@@ -205,6 +193,62 @@ my_item.use("forward")'
 <script type="module" src="../assets/InteractiveCodeRunner.js"></script>
 <br>
 
+And test out throwing an item in a specific `direction`:
+
+<br>
+<div id="interactive-code-runner-direction"
+    data-code-template='banana_item = ProjectileItem("🍌")
+banana_item.use(<direction>)'
+    data-output-template='🍌 is thrown <in front of/behind> the kart.'
+    data-choices='["forward", "backward"]'
+    data-choice-label='Choose a direction:'>
+</div>
+<script type="module" src="../assets/InteractiveCodeRunner.js"></script>
+<br>
+
+### Inheritance
+
+You might be wondering, how are we able to set a `name` for `ProjectileItem` when we didn't specify it had an attribute `name`?
+
+<br>
+```python
+CLASS ProjectileItem EXTENDS Item
+    # no name attribute??
+
+    METHOD use(direction)
+        IF direction is "forward"
+            PRINT "self.name is thrown in front of the kart."
+        IF direction is "backward"
+            PRINT "self.name is thrown behind the kart."
+        ELSE
+            ERROR
+```
+<br>
+
+Can you take a guess?
+
+<br>
+<div id="multiple-choice-quiz-name"
+    data-question='How can a <code>ProjectileItem</code> object have a name even though <code>ProjectileItem</code> doesn’t define name?'
+    data-options='["This actually doesn&apos;t work-we need to fix <code>ProjectileObject</code> to have an attribute for <code>name</code>", "<code>ProjectileItem</code> is a type of <code>Item</code>, and all <code>Item</code>s have names.", "<code>ProjectileItem</code> gets its own name automatically because we passed one in when we created it."]'
+    data-correct-answer="1"
+    data-explanations='["Actually, <code>ProjectileItem</code> is a type of <code>Item</code>, and all <code>Item</code>s have names. Read on, I&apos;ll explain further!", "", "Passing in &apos;banana&apos; doesn&apos;t automatically create a <code>name</code> attribute. The <code>name</code> attribute comes from <code>Item</code>. Because <code>ProjectileItem</code> is a type of <code>Item</code> and all <code>Item</code>s have <code>name</code>s, <code>ProjectileItem</code>s also have <code>name</code>s. Read on and let&apos;s dig into this a bit more."]'>
+</div>
+<script type="module" src="../assets/MultipleChoiceQuiz.js"></script>
+<br>
+
+`ProjectileItem` is a type of `Item`, and because `Item` has a `name` attribute, then so does `ProjectileItem`. In the pseudocode, we say that `ProjectileItem EXTENDS Item`. In Python, we do this by putting the **parent class** in parentheses: `ProjectileItem(Item)`.
+
+When a class **extends** another class, it automatically has access to all of the *parent* class's attributes and methods. This is called **inheritance** (`ProjectileItem` *inherits from* `Item`) and is how we define sub-categories of objects. A banana (for example, `ProjectileItem("Banana")`) is an instance of `ProjectileItem`, which is a more specific type of `Item`.
+
+Because of this, anywhere the program expects an `Item`, it can work with a `ProjectileItem` too. The rest of the system doesn't need to know exactly which kind of item it's holding—it just knows it has an `Item`, and that it can call `use()` on it and access its `name`.
+
+<div style="text-align: center; margin: 1.5rem 0;">
+  <img src="../assets/images/inheritance_diagram.png" alt="Diagram showing how Items are the broadest category, ProjectileItems inherit from Item, and Banana is a specific type of ProjectileItem." style="max-width: 500px; border-radius: 8px;">
+</div>
+
+<div style="text-align: center;"><small><a href="https://mariokart.fandom.com/wiki/Item">Images from MarioKart.Fandom.com</a></small></div>
+
 <br>
 
 ---
@@ -213,9 +257,7 @@ my_item.use("forward")'
 
 ## Modeling Karts
 
-We've modeled the basics of what an item is and can do and how projectile items, specifically, work. Next, let's look at how items interact with another object in the game - karts.
-
-We already know how to model a simple object. Now we'll challenge ourselves by modeling a `Kart`, which is a bit more complicated. In the full game, karts can accelerate, brake, and steer - but for now, we'll focus only on how a kart is affected by items.
+We've modeled the basics of what items are and what they can do and how projectile items, specifically, work. Next, let's look at how items interact with another part of the game—karts. In the full game, karts can accelerate, brake, and steer—but for now, we'll focus only on how a kart is affected by items.
 
 <br>
 <div id="multiple-choice-quiz-banana"
@@ -227,7 +269,7 @@ We already know how to model a simple object. Now we'll challenge ourselves by m
 <script type="module" src="../assets/MultipleChoiceQuiz.js"></script>
 <br>
 
-Hitting a banana doesn't give you an item - it changes the **state** of your kart. The kart is now spun out, and that information needs to be remembered somewhere. We've seen this before, with our candle. The candle can be lit or unlit, and we can change its state by lighting it or blowing it out.
+Hitting a banana doesn't give you an item—it changes the **state** of your kart. The kart is now spun out, and that information needs to be remembered somewhere. We've seen this before, with our candle. The candle can be lit or unlit, and we can change its state by lighting it or blowing it out.
 
 Keeping that in mind, let's figure out how we want to include spinning out in our `Kart` model.
 
@@ -300,7 +342,7 @@ banana = ProjectileItem("banana")
 
 <br>
 <div id="animated-action-button-green-shell"
-    data-button-text="banana.use(my_kart)"
+    data-button-text="banana.use(opponent_kart)"
     data-gif-path="../assets/images/mariokart.gif"
     data-duration="3000">
 </div>
@@ -312,17 +354,27 @@ banana = ProjectileItem("banana")
 
 We now have a basic model for a kart! But a car that can only spin out isn't very fun. Let's also allow our car to become invincible.
 
-## Modeling InvincibilityItem
+<br>
+
+---
+
+<br>
+
+## Modeling an Invincibility Item
+
+### Updating our Kart
 
 <div style="text-align: center; margin: 1.5rem 0;">
-  <img src="../assets/images/princess-peach-mario-kart.gif" alt="Princess Peach uses a star to turn invincible!" style="max-width: 500px; border-radius: 8px;">
+  <img src="../assets/images/princess-peach-mario-kart.gif" alt="Princess Peach uses a Star to turn invincible!" style="max-width: 500px; border-radius: 8px;">
 </div>
 
 <div style="text-align: center;"><small><a href="https://tenor.com/view/princes-speach-mario-kart-superstar-gif-10116704">GIF Credit - Tenor</a></small></div>
 
-In MarioKart, the Star item makes you invincible to all attacks. (It also triggers some triumphant music!) Using a star affects your kart, so how will we reflect that?
+<br>
 
-Let's start by updating `Kart` - it now needs to be able to become invincible and keep track of whether it is currently invincible or not. Let's model it the same way we did spinning out - we have methods for becoming invincible and losing invincibility, and the state of being invincible or not is captured in an attribute.
+In MarioKart, the Star item makes you invincible to all attacks. (It also triggers some triumphant music!) Using a Star affects your kart, so how will we reflect that?
+
+Let's start by updating `Kart`—it now needs to be able to become invincible and keep track of whether it is currently invincible or not. Let's model it the same way we did spinning out—we'll have methods for becoming invincible and losing invincibility, and the state of being invincible or not will be captured in an attribute.
 
 <br>
 <div id="code-comparison-kart-invincible"
@@ -364,12 +416,14 @@ class Kart:
 <script type="module" src="../assets/CodeComparison.js"></script>
 <br>
 
+### Modeling a star
+
 Looks good! Now how do we model a Star? The Star interacts with our Kart, but think about what object should "own" methods and attributes about the Star.
 
 <br>
 <div id="multiple-choice-quiz-star-class"
     data-question='How should we represent a Star using object-oriented programming?'
-    data-options='["A new method in the Kart class", "A new class that inherits from Item", "A variable to store whether we have a star"]'
+    data-options='["A new method in the Kart class", "A new class that inherits from Item", "A variable to store whether we have a Star"]'
     data-correct-answer="1"
     data-explanations='["The Star is an item in the game. While it affects the kart, it isn&apos;t a behavior of the kart itself.", "The Star is a specific type of Item, so we model it as a new class that inherits from <code>Item</code> and defines how it is used.", "A variable can store information, but it can&apos;t describe behavior. We need to define what the Star does when it&apos;s used."]'>
 </div>
@@ -384,8 +438,9 @@ Looks good! Now how do we model a Star? The Star interacts with our Kart, but th
 <script type="module" src="../assets/ReflectionQuiz.js"></script>
 <br>
 
-One of the nice things about object-oriented programming is that we can define generic functionality and re-use it later. For example, a star isn't the only item that grants invincibility in the game. Other items, like the Bullet Bill or the Ghost, might want to use some of the functionality we built for invincibility. But you can defend either choice here - being specific or generic. For now, let's keep it generic!
+Just like a banana isn't the only item you can throw in the game, a Star isn't the only item that grants invincibility. Other items, like the Bullet Bill or the Ghost, might want to use the functionality we built for invincibility. So let's keep the name generic and re-usable, `InvincibilityItem`!
 
+<br>
 <div style="text-align: center; margin: 1.5rem 0;">
   <img src="../assets/images/bullet_bill.gif" alt="A bullet bill steers you through the course without you having to lift a finger, all while invincible!" style="max-width: 500px; border-radius: 8px;">
 </div>
@@ -396,21 +451,26 @@ One of the nice things about object-oriented programming is that we can define g
 
 <br>
 
-Following our `Item` blueprint, we need to define `InvincibilityItem`'s specific `use()` method. Recall that for a `ProjectileItem`, we need to know whether to throw it forward or backward so we give `use()` that direction. An `InvincibilityItem` is used on `Kart` object, and we need to be able to give `use()` a `Kart`.
+Following our `Item` blueprint, we need to define `InvincibilityItem`'s specific `use()` method. Recall that for a `ProjectileItem`, we need to know whether to throw it forward or backward, so we give `use()` that `direction`. An `InvincibilityItem` is used on `Kart` object, and we need to be able to give `use()` a `Kart`.
 
 <br>
 <div id="code-option-quiz-invincibility-use"
-    data-question='Which version of use() correctly applies invincibility to a kart?'
-    data-options='["CLASS InvincibilityItem EXTENDS Item\n\n    METHOD use()\n        kart.become_invincible()", "CLASS InvincibilityItem EXTENDS Item\n\n    METHOD use(kart)\n        kart.become_invincible()", "CLASS InvincibilityItem EXTENDS Item\n\n    METHOD use()\n        become_invincible()"]'
+    data-question='Which version of <code>use()</code> correctly applies invincibility to a kart?'
+    data-options='["CLASS InvincibilityItem EXTENDS Item\n\n    METHOD use()\n        targeted_kart.become_invincible()", "CLASS InvincibilityItem EXTENDS Item\n\n    METHOD use(targeted_kart)\n        targeted_kart.become_invincible()", "CLASS InvincibilityItem EXTENDS Item\n\n    METHOD use()\n        become_invincible()"]'
     data-correct-answer="1"
-    data-explanations='["Where does kart come from? We need to pass the kart into use() so the item knows which kart to affect.", "use() takes a kart as a parameter and affects that kart by calling its become_invincible() method.", "We need to specify which kart to affect, and become_invincible() is a method on Kart, not on InvincibilityItem."]'>
+    data-explanations='["Where does <code>targeted_kart</code> come from? We need a way to pass an instance of a <code>Kart</code> into <code>use()</code> so the item knows which kart to affect.", "<code>use()</code> takes a <code>targeted_kart</code> as a parameter and affects that <code>Kart</code> by calling its <code>become_invincible()</code> method.", "We need a way to pass in which <code>Kart</code> to affect so that we can call <code>become_invincible()</code> on that kart. For example, we want to be able to do something like <code>targeted_kart.become_invincible()</code>. Where else do we need to include <code>targeted_kart</code> so that we can call it in the method?"]'>
 </div>
 <script type="module" src="../assets/CodeOptionQuiz.js"></script>
 <br>
 
----
+Our `use()` method will look like:
 
-<br>
+```python
+METHOD use(targeted_kart)
+    targeted_kart.become_invincible()
+```
+
+We pass a parameter named `targeted_kart` (which represents any instance of our `Kart` class) and then we ask the `targeted_kart` to `become_invincible()`.
 
 So for `InvincibilityItem`, we have:
 
@@ -431,7 +491,9 @@ class InvincibilityItem(Item):
 <script type="module" src="../assets/CodeComparison.js"></script>
 <br>
 
-Let's build some more intuition for why we should change a <code>Kart</code>'s state using a method, as opposed to letting another item change its state directly. We <i>could</i> have the Star item set <code>kart.is_invincible = True</code> directly, and with our current model that would work. But in the actual game, if you drive off the track, you <em>can't</em> activate a star while you're falling. The <code>InvincibilityItem</code> shouldn't need to know whether your kart is falling - that's something your kart should check.
+### Letting objects control their own state
+
+Let's build some more intuition for why we should change a <code>Kart</code>'s state using a method, as opposed to letting another item change its state directly. We <i>could</i> have the Star item set <code>kart.is_invincible = True</code> directly, and with our current model that would work. But in the actual game, if you fall off the track, you <em>can't</em> activate a Star while you're falling. The <code>InvincibilityItem</code> shouldn't need to know whether your kart is falling—that's something your kart knows.
 
 This is the same idea we saw earlier with spinning out. We didn’t let other objects flip <code>is_spun_out</code> directly; instead, we gave the kart a <code>spin_out()</code> method and let the kart decide how its state changes.
 
@@ -450,7 +512,7 @@ Before we try it out though, let's review what we've built!
 
 <h2>Modeling falling off the track with recursion</h2>
 
-Here's one way that we can model Kart to take into account <code>is_falling</code> when an Item triggers the Kart to <code>become_invincible</code>.
+Here's one way that we can model <code>Kart</code> to take into account <code>is_falling</code> when an <code>Item</code> triggers the <code>Kart</code> to <code>become_invincible</code>.
 
 <br>
 <br>
@@ -483,7 +545,7 @@ class Kart:
 <script type="module" src="../assets/CodeComparison.js"></script>
 <br>
 
-Notice how in the ELSE block, we wait a second and then call <code>become_invincible()</code> again.
+Notice how in the <code>ELSE</code> block, we wait a second and then call <code>become_invincible()</code> again.
 
 <br>
 
@@ -491,22 +553,17 @@ Notice how in the ELSE block, we wait a second and then call <code>become_invinc
 <div id="reflection-quiz-recursion"
     data-question="We've waited a second and then we call become_invincible again. What might be different now?"
     data-options='["is_falling might be False now, so we can set is_invincible to True and move on.", "is_falling might still be True, so we wait another second and check again", "Either!"]'
-    data-explanations='["Good call - After waiting, is_falling might have changed to False, allowing us to set is_invincible to True.", "Good thinking! It&apos;s possible is_falling is still True, so we&apos;d wait another second and recursively check again.", "You got it! Both scenarios are possible and we keep checking until the condition changes."]'>
+    data-explanations='["Good call—After waiting, is_falling might have changed to False, allowing us to set is_invincible to True.", "Good thinking! It&apos;s possible is_falling is still True, so we&apos;d wait another second and recursively check again.", "You got it! Both scenarios are possible and we keep checking until the condition changes."]'>
 </div>
 <script type="module" src="../assets/ReflectionQuiz.js"></script>
 <br>
 
-We could see either case! And eventually, we'll check is_falling, it will be False, and we're able to become_invincible. This method is called <strong>recursion</strong>! Recursion is a general computer science concept and not specific to Object-Oriented Programming - so we'll dive into it in more detail in a later lesson.
+We could see either case! Let's trace through this. Whenever we call <code>become_invincible()</code>, as long as <code>is_falling</code> is set to True, we keep waiting a second and calling the method again. We check <code>is_falling</code> every time we call the method, and eventually we'll stop falling and the next time we check, <code>is_falling</code> will be False. Once <code>is_falling</code> is False, we change <code>is_invincible</code> to True and exit the method.
 
 <br>
 <br>
 
-For now, just take an extra second to trace through what's happening and try to wrap your head around it. As long as is_falling is set to True, we keep waiting a second and calling the function again to check the status of is_falling. is_falling eventually gets set to False, so we change is_invincible to True and exit the function.
-
-<br>
-<br>
-
-Cue star music!
+This pattern is called <strong>recursion</strong>! Recursion is a general computer science concept or pattern and is not specific to Object-Oriented Programming—so we'll dive into it in more detail in a later lesson.
 
 <br>
 <br>
@@ -566,8 +623,8 @@ CLASS ProjectileItem EXTENDS Item
 # InvincibilityItem subclass
 CLASS InvincibilityItem EXTENDS Item
 
-    METHOD use(kart)
-        kart.become_invincible()'
+    METHOD use(targeted_kart)
+        targeted_kart.become_invincible()'
     data-python='# Item base class
 class Item:
     def __init__(self, name):
@@ -612,27 +669,27 @@ class ProjectileItem(Item):
 class InvincibilityItem(Item):
     """Items you use on your kart to grant invincibility."""
 
-    def use(self, kart):
-        kart.become_invincible()'
+    def use(self, targeted_kart):
+        targeted_kart.become_invincible()'
     data-show-both-option='false'>
 </div>
 <script type="module" src="../assets/CodeComparison.js"></script>
 <br>
 
 ## Putting it together
-Finally, let's test out everything we've built! First, we'll need to create a `Kart`. Let's go ahead and do this in Python - can you remember how we set it up?
+Finally, let's test out everything we've built! First, we'll need to create a `Kart`. Let's go ahead and do this in Python—can you remember how we set it up?
 
 <br>
 <div id="multiple-choice-quiz-create-kart"
-    data-question='How do we create a Kart object?'
-    data-options='["my_kart = Kart()", "Kart()", "my_kart = kart()"]'
+    data-question='How do we create a <code>Kart</code> object?'
+    data-options='["<code>my_kart = Kart()</code>", "<code>Kart()</code>", "<code>my_kart = Kart</code>"]'
     data-correct-answer="0"
-    data-explanations='["", "We created an object, but we need to save it to a variable so we can use it. We do that by choosing a name for our variable and setting it equal to our Kart class, like <code>my_variable = Kart()</code>", "Pay attention to the capitalization - we&apos;ve created a Kart() object with a capital K. Python objects are case-sensitive!"]'>
+    data-explanations='["", "We created an object, but we need to save it to a variable so we can use it. We do that by choosing a name for our variable and calling our Kart class, like <code>my_variable = Kart()</code>", "Close! <code>Kart</code> by itself refers to the class, which is the blueprint. To create an actual <code>Kart</code> object (an instance of the class), we need to call it with parentheses: <code>Kart()</code>. In Python, adding parentheses calls the class like a function or method—and calling a class creates a new instance."]'>
 </div>
 <script type="module" src="../assets/MultipleChoiceQuiz.js"></script>
 <br>
 
-That's it! Unlike `Item`s, `Kart`s don't have a name of any other customization, so we just create a generic `Kart`.
+To create an instance of a `Kart`, we type `my_kart = Kart()`. Unlike `Item`s, `Kart`s don't have any attributes we need to set (`is_spun_out` and `is_invincible` both default to False without us having to do anything), so we just create a generic instance of a `Kart`.
 
 Let's see what current state `my_kart` is in. Press Play to run the code:
 
@@ -646,7 +703,7 @@ Kart is invincible:  False'>
 <script type="module" src="../assets/CodeRunner.js"></script>
 <br>
 
-Perfect, our `Kart` was setup with the defaults - neither spun out nor invincible. Now let's try throwing a banana.
+Perfect, our `Kart`'s attributes were setup with the defaults—neither spun out nor invincible. Now let's try throwing a banana.
 
 <br>
 <div id="code-runner-banana"
@@ -657,7 +714,7 @@ banana_item.use("backward")'
 <script type="module" src="../assets/CodeRunner.js"></script>
 <br>
 
-Finally, let's use a star!
+Finally, let's use a Star!
 
 <br>
 <div id="code-runner-special-star"
@@ -696,9 +753,16 @@ Thanks for building this with me and I'll see you out on the track!
 
 <br>
 
+### Future Improvements
+In future iterations of this article, I would like to:
+- Break this big article into a sequential course. Each lesson reviews the previous lesson before diving into the new context.
+- Include code demonstrations that allow the user to drag and drop code blocks. Allow them to run it and see what happens - designing it so that it's obvious when things aren't working quite right and hints at what's wrong. (Pseudo-error traces?)
+- Render all code in widgets with proper syntax highlighting - makes code much more readable
+- MarioKart is fun and familiar, but modeling a generic racing game instead might be less distracting for users ("why doesn't this work exactly like it does in the game?"). This also allows for making subtle references that MarioKart / racing game fans will recognize and be excited about, without excluding those who are unfamiliar.
+
 ### AI Use
 Here was my process for developing this article:
 - Came up with the idea (using MarioKart to teach OOP) on my own
 - Developed the narrative and ideas for interactive widgets on my own. That draft is viewable [here](https://github.com/FarynWoods/interactive-learning/blob/15964444fdabf5448be39e2f8414b1449d5253c4/articles/double_dash.md).
-- Used AI to generate the code for the interactive widgets.
+- Used AI to generate the code for the interactive widgets, per my specifications.
 - While editing the final draft, most of the edits are my own but I used AI to offer suggestions when I was stuck.
